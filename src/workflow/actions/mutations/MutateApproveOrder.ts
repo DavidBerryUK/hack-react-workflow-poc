@@ -1,7 +1,9 @@
 import { nanoid } from 'nanoid';
 import ActionBase from '../base/ActionBase';
+import ActionExecutionResult from '../../model/ActionExecutionResult';
 import EnumNodeType from '../../enums/EnumNodeType';
 import IAction from '../interfaces/IAction';
+import UpdatableContext from '../../../workflowContext/models/UpdatableContext';
 
 export default class MutateApproveOrder extends ActionBase implements IAction {
 	nodeType = EnumNodeType.mutate;
@@ -11,5 +13,7 @@ export default class MutateApproveOrder extends ActionBase implements IAction {
 		super(id, 'Approve Order');
 	}
 
-	execute(): void {}
+	execute(context: UpdatableContext): ActionExecutionResult {
+		return ActionExecutionResult.success;
+	}
 }

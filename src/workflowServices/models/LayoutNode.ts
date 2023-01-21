@@ -1,4 +1,4 @@
-import Rectangle from '../../models/Rectangle';
+import Rectangle from '../../models/geometry/Rectangle';
 import IAction from '../../workflow/actions/interfaces/IAction';
 
 export default class LayoutNode {

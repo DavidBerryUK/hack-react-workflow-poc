@@ -1,7 +1,9 @@
 import { nanoid } from 'nanoid';
 import ActionBase from '../base/ActionBase';
+import ActionExecutionResult from '../../model/ActionExecutionResult';
 import EnumNodeType from '../../enums/EnumNodeType';
 import IAction from '../interfaces/IAction';
+import UpdatableContext from '../../../workflowContext/models/UpdatableContext';
 
 export default class ValidateIsGarageUser extends ActionBase implements IAction {
 	nodeType = EnumNodeType.validation;
@@ -10,5 +12,7 @@ export default class ValidateIsGarageUser extends ActionBase implements IAction 
 		super(id, 'Is a garage user?');
 	}
 
-	execute(): void {}
+	execute(context: UpdatableContext): ActionExecutionResult {
+		return ActionExecutionResult.success;
+	}
 }

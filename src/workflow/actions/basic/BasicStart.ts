@@ -2,6 +2,8 @@ import { nanoid } from 'nanoid';
 import ActionBase from '../base/ActionBase';
 import EnumNodeType from '../../enums/EnumNodeType';
 import IAction from '../interfaces/IAction';
+import ActionExecutionResult from '../../model/ActionExecutionResult';
+import UpdatableContext from '../../../workflowContext/models/UpdatableContext';
 
 export default class BasicStart extends ActionBase implements IAction {
 	nodeType = EnumNodeType.start;
@@ -11,5 +13,7 @@ export default class BasicStart extends ActionBase implements IAction {
 		super(id, 'Start');
 	}
 
-	execute(): void {}
+	execute(context: UpdatableContext): ActionExecutionResult {
+		return ActionExecutionResult.success;
+	}
 }

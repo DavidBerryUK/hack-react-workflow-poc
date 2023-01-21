@@ -1,5 +1,7 @@
 import EnumUserType from '../enums/EnumUserType';
-
+//
+// model of a user to be stored in the context
+//
 export default class UserModel {
 	readonly name: string;
 	readonly userType: EnumUserType;

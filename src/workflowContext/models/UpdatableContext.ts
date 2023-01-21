@@ -1,10 +1,9 @@
-import IAction from '../../workflow/actions/interfaces/IAction';
 import ContextModel from './ContextModel';
 import ContextSnapshotModel from './ContextSnapshotModel';
+import IAction from '../../workflow/actions/interfaces/IAction';
 import OrderModel from './OrderModel';
 import UserModel from './UserModel';
 import VehicleModel from './VehicleModel';
-
 //
 // Context for holding data when executing workflows.
 //  Snapshots are taken whenever data is updated
@@ -12,7 +11,7 @@ import VehicleModel from './VehicleModel';
 // data can only by update via actions
 //
 //
-export class UpdatableContext {
+export default class UpdatableContext {
 	private snapshots: Array<ContextSnapshotModel>;
 	data: ContextModel;
 

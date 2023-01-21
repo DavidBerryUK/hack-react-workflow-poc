@@ -2,6 +2,10 @@ import OrderModel from './OrderModel';
 import UserModel from './UserModel';
 import VehicleModel from './VehicleModel';
 
+//
+// immutable context - holds all data
+//
+
 export default class ContextModel {
 	readonly user: UserModel | undefined;
 	readonly vehicle: VehicleModel | undefined;

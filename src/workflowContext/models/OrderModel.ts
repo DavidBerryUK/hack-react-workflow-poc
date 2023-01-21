@@ -1,5 +1,7 @@
 import EnumOrderStatus from '../enums/EnumOrderStatus';
-
+//
+// A model of an order to be stored in the context
+//
 export default class OrderModel {
 	readonly orderRef: string;
 	readonly status: EnumOrderStatus;
