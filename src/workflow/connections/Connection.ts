@@ -9,6 +9,6 @@ export default class Connection {
 	constructor(from: IAction, to: IAction, type: EnumConnectionType) {
 		this.from = from;
 		this.to = to;
-		this.type = EnumConnectionType.default;
+		this.type = type;
 	}
 }

@@ -1,9 +1,9 @@
 import BasicFinish from '../actions/basic/BasicFinish';
 import BasicStart from '../actions/basic/BasicStart';
 import BranchCanAutoApprove from '../actions/branching/BranchCanAutoApprove';
+import ConnectionBuilder from '../connections/ConnectionBuilder';
 import ExtSendMailQueuedForApproval from '../actions/external/ExtSendMailQueuedForApproval';
 import ExtSendMailYourOrderIsApproved from '../actions/external/ExtSendMailYourOrderIsApproved';
-import IAction from '../actions/interfaces/IAction';
 import MutateApproveOrder from '../actions/mutations/MutateApproveOrder';
 import MutateSetStatusApproved from '../actions/mutations/MutateSetStatusApproved';
 import MutateSetStatusQueueManualApproval from '../actions/mutations/MutateSetStatusQueueManualApproval';
@@ -13,10 +13,10 @@ import RepoVehicleLoad from '../actions/repository/RepoVehicleLoad';
 import ValidateDoesVehicleHaveRepairContract from '../actions/validation/ValidateDoesVehicleHaveRepairContract';
 import ValidateIsGarageUser from '../actions/validation/ValidateIsGarageUser';
 import ValidateIsOrderInDraftState from '../actions/validation/ValidateIsOrderInDraftState';
-import ConnectionBuilder from '../connections/ConnectionBuilder';
+import Workflow from '../Workflow';
 
 export default class FactoryDemoWorkflow {
-	createWorkflow(): Array<IAction> {
+	static createWorkflow(): Workflow {
 		//
 		//
 		const start = new BasicStart();
@@ -58,26 +58,26 @@ export default class FactoryDemoWorkflow {
 		//
 		// Create connections
 		//
-		ConnectionBuilder.FromTo(start, validateIsGarageUser);
+		ConnectionBuilder.FlowFromTo(start, validateIsGarageUser);
 
-		ConnectionBuilder.FromTo(validateIsGarageUser, validateIsOrderInDraftState);
-		ConnectionBuilder.FromTo(validateIsOrderInDraftState, repoOrderLoad);
-		ConnectionBuilder.FromTo(repoOrderLoad, repoVehicleLoad);
-		ConnectionBuilder.FromTo(repoVehicleLoad, validateDoesVehicleHaveRepairContract);
-		ConnectionBuilder.FromTo(validateDoesVehicleHaveRepairContract, branchCanAutoApprove);
+		ConnectionBuilder.FlowFromTo(validateIsGarageUser, validateIsOrderInDraftState);
+		ConnectionBuilder.FlowFromTo(validateIsOrderInDraftState, repoOrderLoad);
+		ConnectionBuilder.FlowFromTo(repoOrderLoad, repoVehicleLoad);
+		ConnectionBuilder.FlowFromTo(repoVehicleLoad, validateDoesVehicleHaveRepairContract);
+		ConnectionBuilder.FlowFromTo(validateDoesVehicleHaveRepairContract, branchCanAutoApprove);
 
 		// can auto approve path
-		ConnectionBuilder.FromToForPass(branchCanAutoApprove, mutateSetStatusQueueManualApproval);
-		ConnectionBuilder.FromToForPass(mutateSetStatusQueueManualApproval, repoOrderSaveA);
-		ConnectionBuilder.FromToForPass(repoOrderSaveA, extSendMailQueuedForApproval);
-		ConnectionBuilder.FromToForFail(extSendMailQueuedForApproval, finish);
+		ConnectionBuilder.FlowFromToForWhenPass(branchCanAutoApprove, mutateSetStatusQueueManualApproval);
+		ConnectionBuilder.FlowFromTo(mutateSetStatusQueueManualApproval, repoOrderSaveA);
+		ConnectionBuilder.FlowFromTo(repoOrderSaveA, extSendMailQueuedForApproval);
+		ConnectionBuilder.FlowFromTo(extSendMailQueuedForApproval, finish);
 
 		// manual approval path
-		ConnectionBuilder.FromToForFail(branchCanAutoApprove, mutateApproveOrder);
-		ConnectionBuilder.FromToForFail(mutateApproveOrder, mutateSetStatusApproved);
-		ConnectionBuilder.FromToForFail(mutateSetStatusApproved, repoOrderSaveB);
-		ConnectionBuilder.FromToForFail(repoOrderSaveB, extSendMailYourOrderIsApproved);
-		ConnectionBuilder.FromToForFail(extSendMailYourOrderIsApproved, finish);
+		ConnectionBuilder.FromFromToWhenFail(branchCanAutoApprove, mutateApproveOrder);
+		ConnectionBuilder.FlowFromTo(mutateApproveOrder, mutateSetStatusApproved);
+		ConnectionBuilder.FlowFromTo(mutateSetStatusApproved, repoOrderSaveB);
+		ConnectionBuilder.FlowFromTo(repoOrderSaveB, extSendMailYourOrderIsApproved);
+		ConnectionBuilder.FlowFromTo(extSendMailYourOrderIsApproved, finish);
 
 		const nodes = [
 			start,
@@ -96,6 +96,8 @@ export default class FactoryDemoWorkflow {
 			extSendMailYourOrderIsApproved,
 			finish,
 		];
-		return nodes;
+
+		const workflow = new Workflow(nodes);
+		return workflow;
 	}
 }

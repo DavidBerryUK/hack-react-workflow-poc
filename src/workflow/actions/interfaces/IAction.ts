@@ -1,8 +1,10 @@
-import Connections from "../../connections/Connections";
+import Connections from '../../connections/Connections';
+import EnumNodeType from '../../enums/EnumNodeType';
 
 export default interface IAction {
-  connections: Connections;
-  id: string;
-  name: string;
-  execute(): void;
+	nodeType: EnumNodeType;
+	connections: Connections;
+	id: string;
+	name: string;
+	execute(): void;
 }
