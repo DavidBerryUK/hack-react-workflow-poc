@@ -5,9 +5,10 @@
 // The layout engine positions the nodes based on the type of connection (default, onFail, onSuccess) and the width and height of the nodes.
 // The function also includes a parseNodes function which is called recursively to traverse through the connections of the "Workflow" object.
 
-import Origin from '../../models/Origin';
-import Rectangle from '../../models/Rectangle';
-import Size from '../../models/Size';
+import Origin from '../../models/geometry/Origin';
+import Rectangle from '../../models/geometry/Rectangle';
+import Size from '../../models/geometry/Size';
+
 import IAction from '../../workflow/actions/interfaces/IAction';
 import EnumConnectionType from '../../workflow/connections/EnumConnectionType';
 import Workflow from '../../workflow/Workflow';

@@ -1,6 +1,6 @@
+import { useState } from 'react';
 import FactoryDemoWorkflow from '../../workflow/factories/FactoryDemoWorkflow';
 import UIWorkflow from '../workflow/UIWorkflow';
-import { useState } from 'react';
 import useWorkflowLayoutEngine from '../../workflowServices/layout/WorkflowLayoutEngine';
 
 const App: React.FC = () => {
@@ -10,7 +10,6 @@ const App: React.FC = () => {
 
 	return (
 		<div>
-			my app: {workflow.nodes.length}
 			<UIWorkflow workflow={workflowLayout} />
 		</div>
 	);
