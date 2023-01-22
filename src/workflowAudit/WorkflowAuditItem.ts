@@ -1,7 +1,10 @@
+import { nanoid } from 'nanoid';
 import IAction from '../workflow/actions/interfaces/IAction';
 import ActionExecutionResult from '../workflow/model/ActionExecutionResult';
 
 export default class WorkflowAuditItem {
+	id: string;
+	step: number;
 	action: IAction;
 	transactionId: string;
 	startDate: Date;
@@ -9,6 +12,8 @@ export default class WorkflowAuditItem {
 	result: ActionExecutionResult | undefined;
 
 	constructor(action: IAction, transactionId: string) {
+		this.id = nanoid();
+		this.step = 0;
 		this.action = action;
 		this.transactionId = transactionId;
 		this.startDate = new Date();

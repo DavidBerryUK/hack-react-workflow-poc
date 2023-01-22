@@ -4,13 +4,15 @@ import ActionExecutionResult from '../../model/ActionExecutionResult';
 import EnumNodeType from '../../enums/EnumNodeType';
 import IAction from '../interfaces/IAction';
 import UpdatableContext from '../../../workflowContext/models/UpdatableContext';
+import EnumIcon from '../../../components/icons/enum/EnumIcon';
 
-export default class MutateApproveOrder extends ActionBase implements IAction {
-	nodeType = EnumNodeType.mutate;
+export default class ActionValidateIsOrderInDraftState extends ActionBase implements IAction {
+	nodeType = EnumNodeType.validation;
+	icon = EnumIcon.validation;
 
 	constructor() {
 		const id = nanoid();
-		super(id, 'Approve Order');
+		super(id, 'Is order in draft state?');
 	}
 
 	execute(context: UpdatableContext): ActionExecutionResult {

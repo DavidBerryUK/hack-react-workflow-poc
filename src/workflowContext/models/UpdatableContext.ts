@@ -4,6 +4,7 @@ import IAction from '../../workflow/actions/interfaces/IAction';
 import OrderModel from './OrderModel';
 import UserModel from './UserModel';
 import VehicleModel from './VehicleModel';
+import WorkflowAuditLog from '../../workflowAudit/WorkflowAuditLog';
 //
 // Context for holding data when executing workflows.
 //  Snapshots are taken whenever data is updated
@@ -14,10 +15,12 @@ import VehicleModel from './VehicleModel';
 export default class UpdatableContext {
 	private snapshots: Array<ContextSnapshotModel>;
 	data: ContextModel;
+	auditLog: WorkflowAuditLog;
 
 	constructor() {
 		this.snapshots = new Array<ContextSnapshotModel>();
 		this.data = new ContextModel();
+		this.auditLog = new WorkflowAuditLog();
 	}
 
 	updateUser(action: IAction, user: UserModel) {

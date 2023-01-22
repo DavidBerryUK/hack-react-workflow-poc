@@ -5,12 +5,10 @@ import IAction from '../workflow/actions/interfaces/IAction';
 import UpdatableContext from '../workflowContext/models/UpdatableContext';
 import Workflow from '../workflow/Workflow';
 import WorkflowAuditItem from '../workflowAudit/WorkflowAuditItem';
-import WorkflowAuditLog from '../workflowAudit/WorkflowAuditLog';
 
 const useWorkflowRunEngine = (workflow: Workflow, context: UpdatableContext) => {
 	const executeWorkflow = () => {
 		let node: IAction | undefined = workflow.startNode;
-		let auditLog = new WorkflowAuditLog();
 
 		if (node === null) {
 			throw new Error('Workflow must have a start node');
@@ -24,7 +22,7 @@ const useWorkflowRunEngine = (workflow: Workflow, context: UpdatableContext) => 
 
 			const transactionId = nanoid();
 			const audit = new WorkflowAuditItem(node, transactionId);
-			auditLog.add(audit);
+			context.auditLog.add(audit);
 
 			//
 			// execute node

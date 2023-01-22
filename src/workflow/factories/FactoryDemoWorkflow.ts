@@ -1,59 +1,59 @@
-import BasicFinish from '../actions/basic/BasicFinish';
-import BasicStart from '../actions/basic/BasicStart';
-import BranchCanAutoApprove from '../actions/branching/BranchCanAutoApprove';
+import ActionFinish from '../actions/basic/ActionFinish';
+import ActionStart from '../actions/basic/ActionStart';
+import ActionBranchCanAutoApprove from '../actions/branching/ActionBranchCanAutoApprove';
 import ConnectionBuilder from '../connections/ConnectionBuilder';
-import ExtSendMailQueuedForApproval from '../actions/external/ExtSendMailQueuedForApproval';
-import ExtSendMailYourOrderIsApproved from '../actions/external/ExtSendMailYourOrderIsApproved';
-import MutateApproveOrder from '../actions/mutations/MutateApproveOrder';
-import MutateSetStatusApproved from '../actions/mutations/MutateSetStatusApproved';
-import MutateSetStatusQueueManualApproval from '../actions/mutations/MutateSetStatusQueueManualApproval';
-import RepoOrderLoad from '../actions/repository/RepoOrderLoad';
-import RepoOrderSave from '../actions/repository/RepoOrderSave';
-import RepoVehicleLoad from '../actions/repository/RepoVehicleLoad';
-import ValidateDoesVehicleHaveRepairContract from '../actions/validation/ValidateDoesVehicleHaveRepairContract';
-import ValidateIsGarageUser from '../actions/validation/ValidateIsGarageUser';
-import ValidateIsOrderInDraftState from '../actions/validation/ValidateIsOrderInDraftState';
+import ActionExtSendMailQueuedForApproval from '../actions/external/ActionExtSendMailQueuedForApproval';
+import ActionExtSendMailYourOrderIsApproved from '../actions/external/ActionExtSendMailYourOrderIsApproved';
+import ActionMutateApproveOrder from '../actions/mutations/ActionMutateApproveOrder';
+import ActionMutateSetStatusApproved from '../actions/mutations/ActionMutateSetStatusApproved';
+import ActionMutateSetStatusQueueManualApproval from '../actions/mutations/ActionMutateSetStatusQueueManualApproval';
+import ActionRepoOrderLoad from '../actions/repository/ActionRepoOrderLoad';
+import RepoOrderSave from '../actions/repository/ActionRepoOrderSave';
+import ActionRepoVehicleLoad from '../actions/repository/ActionRepoVehicleLoad';
+import ActionValidateDoesVehicleHaveRepairContract from '../actions/validation/ActionValidateDoesVehicleHaveRepairContract';
+import ActionValidateIsGarageUser from '../actions/validation/ActionValidateIsGarageUser';
+import ActionValidateIsOrderInDraftState from '../actions/validation/ActionValidateIsOrderInDraftState';
 import Workflow from '../Workflow';
 
 export default class FactoryDemoWorkflow {
 	static createWorkflow(): Workflow {
 		//
 		//
-		const start = new BasicStart();
-		const finish = new BasicFinish();
+		const start = new ActionStart();
+		const finish = new ActionFinish();
 
 		//
 		// Create Repository Nodes
 		//
-		const repoOrderLoad = new RepoOrderLoad();
+		const repoOrderLoad = new ActionRepoOrderLoad();
 		const repoOrderSaveA = new RepoOrderSave();
 		const repoOrderSaveB = new RepoOrderSave();
-		const repoVehicleLoad = new RepoVehicleLoad();
+		const repoVehicleLoad = new ActionRepoVehicleLoad();
 
 		//
 		// Create validation nodes
 		//
-		const validateIsGarageUser = new ValidateIsGarageUser();
-		const validateIsOrderInDraftState = new ValidateIsOrderInDraftState();
-		const validateDoesVehicleHaveRepairContract = new ValidateDoesVehicleHaveRepairContract();
+		const validateIsGarageUser = new ActionValidateIsGarageUser();
+		const validateIsOrderInDraftState = new ActionValidateIsOrderInDraftState();
+		const validateDoesVehicleHaveRepairContract = new ActionValidateDoesVehicleHaveRepairContract();
 
 		//
 		// Create branching nodes
 		//
-		const branchCanAutoApprove = new BranchCanAutoApprove();
+		const branchCanAutoApprove = new ActionBranchCanAutoApprove();
 
 		//
 		// Create mutation Nodes
 		//
-		const mutateApproveOrder = new MutateApproveOrder();
-		const mutateSetStatusApproved = new MutateSetStatusApproved();
-		const mutateSetStatusQueueManualApproval = new MutateSetStatusQueueManualApproval();
+		const mutateApproveOrder = new ActionMutateApproveOrder();
+		const mutateSetStatusApproved = new ActionMutateSetStatusApproved();
+		const mutateSetStatusQueueManualApproval = new ActionMutateSetStatusQueueManualApproval();
 
 		//
 		// Create external Nodes
 		//
-		const extSendMailQueuedForApproval = new ExtSendMailQueuedForApproval();
-		const extSendMailYourOrderIsApproved = new ExtSendMailYourOrderIsApproved();
+		const extSendMailQueuedForApproval = new ActionExtSendMailQueuedForApproval();
+		const extSendMailYourOrderIsApproved = new ActionExtSendMailYourOrderIsApproved();
 
 		//
 		// Create connections

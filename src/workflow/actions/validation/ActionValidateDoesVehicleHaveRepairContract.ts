@@ -1,16 +1,18 @@
 import { nanoid } from 'nanoid';
 import ActionBase from '../base/ActionBase';
+import ActionExecutionResult from '../../model/ActionExecutionResult';
 import EnumNodeType from '../../enums/EnumNodeType';
 import IAction from '../interfaces/IAction';
-import ActionExecutionResult from '../../model/ActionExecutionResult';
 import UpdatableContext from '../../../workflowContext/models/UpdatableContext';
+import EnumIcon from '../../../components/icons/enum/EnumIcon';
 
-export default class BasicFinish extends ActionBase implements IAction {
-	nodeType = EnumNodeType.finish;
+export default class ActionValidateDoesVehicleHaveRepairContract extends ActionBase implements IAction {
+	nodeType = EnumNodeType.validation;
+	icon = EnumIcon.validation;
 
 	constructor() {
 		const id = nanoid();
-		super(id, 'Finish');
+		super(id, 'Does vehicle have repair contract?');
 	}
 
 	execute(context: UpdatableContext): ActionExecutionResult {

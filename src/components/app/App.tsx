@@ -4,6 +4,8 @@ import UIWorkflow from '../workflow/UIWorkflow';
 import UpdatableContext from '../../workflowContext/models/UpdatableContext';
 import useWorkflowLayoutEngine from '../../workflowServices/useWorkflowLayoutEngine';
 import useWorkflowRunEngine from '../../workflowServices/useWorkflowRunEngine';
+import UIAuditList from '../auditList/UIAuditList';
+import './styles/Styles.scss';
 
 const App: React.FC = () => {
 	const workflowLayoutEngine = useWorkflowLayoutEngine();
@@ -16,8 +18,9 @@ const App: React.FC = () => {
 	useWorkflowRunEngine(workflow, context);
 
 	return (
-		<div>
-			<UIWorkflow workflow={workflowLayout} />
+		<div className="ui-app">
+			<UIWorkflow auditLog={context.auditLog} workflow={workflowLayout} />
+			<UIAuditList auditLog={context.auditLog} />
 		</div>
 	);
 };

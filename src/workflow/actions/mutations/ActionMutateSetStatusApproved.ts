@@ -4,9 +4,11 @@ import ActionExecutionResult from '../../model/ActionExecutionResult';
 import EnumNodeType from '../../enums/EnumNodeType';
 import IAction from '../interfaces/IAction';
 import UpdatableContext from '../../../workflowContext/models/UpdatableContext';
+import EnumIcon from '../../../components/icons/enum/EnumIcon';
 
-export default class MutateSetStatusApproved extends ActionBase implements IAction {
+export default class ActionMutateSetStatusApproved extends ActionBase implements IAction {
 	nodeType = EnumNodeType.mutate;
+	icon = EnumIcon.mutate;
 
 	constructor() {
 		const id = nanoid();

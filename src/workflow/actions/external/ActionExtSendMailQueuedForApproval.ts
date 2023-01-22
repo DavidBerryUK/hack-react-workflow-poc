@@ -4,13 +4,15 @@ import ActionExecutionResult from '../../model/ActionExecutionResult';
 import EnumNodeType from '../../enums/EnumNodeType';
 import IAction from '../interfaces/IAction';
 import UpdatableContext from '../../../workflowContext/models/UpdatableContext';
+import EnumIcon from '../../../components/icons/enum/EnumIcon';
 
-export default class ValidateIsOrderInDraftState extends ActionBase implements IAction {
-	nodeType = EnumNodeType.validation;
+export default class ActionExtSendMailQueuedForApproval extends ActionBase implements IAction {
+	nodeType = EnumNodeType.email;
+	icon = EnumIcon.email;
 
 	constructor() {
 		const id = nanoid();
-		super(id, 'Is order in draft state?');
+		super(id, 'Send Email: Your order queued for manual approved');
 	}
 
 	execute(context: UpdatableContext): ActionExecutionResult {
