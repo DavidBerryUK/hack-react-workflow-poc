@@ -23,23 +23,31 @@ export default class UpdatableContext {
 		this.auditLog = new WorkflowAuditLog();
 	}
 
-	updateUser(action: IAction, user: UserModel) {
+	updateUser(action: IAction, user: UserModel, transactionId: string) {
 		this.data = this.data.cloneWithUser(user);
-		this.takeSnapshot(action);
+		this.takeSnapshot(action, transactionId);
 	}
 
-	updateVehicle(action: IAction, vehicle: VehicleModel) {
+	updateVehicle(action: IAction, vehicle: VehicleModel, transactionId: string) {
 		this.data = this.data.cloneWithVehicle(vehicle);
-		this.takeSnapshot(action);
+		this.takeSnapshot(action, transactionId);
 	}
 
-	updateOrder(action: IAction, order: OrderModel) {
+	updateOrder(action: IAction, order: OrderModel, transactionId: string) {
 		this.data = this.data.cloneWithOrder(order);
-		this.takeSnapshot(action);
+		this.takeSnapshot(action, transactionId);
 	}
 
-	takeSnapshot(action: IAction) {
-		const snapshot = new ContextSnapshotModel(this.data.clone(), action);
+	takeSnapshot(action: IAction, transactionId: string) {
+		const snapshot = new ContextSnapshotModel(this.data.clone(), action, transactionId);
 		this.snapshots.push(snapshot);
+	}
+
+	getSnapShotForTransaction(transactionId: string): ContextSnapshotModel | undefined {
+		const snapshot = this.snapshots.filter((item) => item.transactionId === transactionId);
+		if (snapshot.length > 0) {
+			return snapshot[0];
+		}
+		return undefined;
 	}
 }

@@ -2,11 +2,15 @@ $banner-width-left: 30px;
 $banner-width-right: 30px;
 
 .ui-workflow {
-	font-family: Arial, Helvetica, sans-serif;
 	position: relative;
 
+	background-color: #fefeff;
+	border: solid 1px #eee;
+	border-radius: 8px;
 	width: 800px;
-	height: 1150px;
+	height: 1200px;
+	margin-left: 8px;
+	margin-right: 8px;
 
 	.ui-arrow {
 		position: absolute;

@@ -18,7 +18,7 @@ import LayoutWorkflowModel from './models/LayoutWorkflow';
 // create a hook to layout nodes for UI
 //
 const useWorkflowLayoutEngine = () => {
-	const nodeWidth = 180;
+	const nodeWidth = 200;
 	const nodeHeight = 80;
 	const nodeSpacingX = 80;
 	const nodeSpacingY = 30;
@@ -27,7 +27,7 @@ const useWorkflowLayoutEngine = () => {
 		let current = workflow.startNode;
 		const layoutWorkflow = new LayoutWorkflowModel();
 
-		parseNodes(layoutWorkflow, current, new Origin(nodeWidth * 1 + nodeSpacingX, nodeSpacingY));
+		parseNodes(layoutWorkflow, current, new Origin(nodeWidth + nodeSpacingX * 1.2, 0));
 
 		return layoutWorkflow;
 	};

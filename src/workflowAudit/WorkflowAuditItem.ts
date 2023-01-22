@@ -7,8 +7,9 @@ export default class WorkflowAuditItem {
 	step: number;
 	action: IAction;
 	transactionId: string;
-	startDate: Date;
-	finishDate: Date | undefined;
+	startTime: number;
+	finishTime: number | undefined;
+	duration: number | undefined;
 	result: ActionExecutionResult | undefined;
 
 	constructor(action: IAction, transactionId: string) {
@@ -16,11 +17,12 @@ export default class WorkflowAuditItem {
 		this.step = 0;
 		this.action = action;
 		this.transactionId = transactionId;
-		this.startDate = new Date();
+		this.startTime = performance.now();
 	}
 
 	complete(result: ActionExecutionResult) {
 		this.result = result;
-		this.finishDate = new Date();
+		this.finishTime = performance.now();
+		this.duration = this.finishTime - this.startTime;
 	}
 }

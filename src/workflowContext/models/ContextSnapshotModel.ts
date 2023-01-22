@@ -5,12 +5,12 @@ import ContextModel from './ContextModel';
 // to the action that updated it
 //
 export default class ContextSnapshotModel {
-	date: Date;
+	transactionId: string;
 	data: ContextModel;
 	action: IAction;
 
-	constructor(data: ContextModel, action: IAction) {
-		this.date = new Date();
+	constructor(data: ContextModel, action: IAction, transactionId: string) {
+		this.transactionId = transactionId;
 		this.data = data;
 		this.action = action;
 	}

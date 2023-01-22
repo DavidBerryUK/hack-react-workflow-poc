@@ -18,8 +18,6 @@ const useWorkflowRunEngine = (workflow: Workflow, context: UpdatableContext) => 
 		// loop though nodes in sequence
 		//
 		do {
-			console.log(`executing node ${node.name}`);
-
 			const transactionId = nanoid();
 			const audit = new WorkflowAuditItem(node, transactionId);
 			context.auditLog.add(audit);
