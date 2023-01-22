@@ -20,7 +20,8 @@ export default class FactoryDemoWorkflow {
 		//
 		//
 		const start = new ActionStart();
-		const finish = new ActionFinish();
+		const finishA = new ActionFinish();
+		const finishB = new ActionFinish();
 
 		//
 		// Create Repository Nodes
@@ -60,9 +61,12 @@ export default class FactoryDemoWorkflow {
 		//
 		ConnectionBuilder.FlowFromTo(start, validateIsGarageUser);
 
-		ConnectionBuilder.FlowFromTo(validateIsGarageUser, validateIsOrderInDraftState);
-		ConnectionBuilder.FlowFromTo(validateIsOrderInDraftState, repoOrderLoad);
-		ConnectionBuilder.FlowFromTo(repoOrderLoad, repoVehicleLoad);
+		ConnectionBuilder.FlowFromTo(validateIsGarageUser, repoOrderLoad);
+
+		ConnectionBuilder.FlowFromTo(repoOrderLoad, validateIsOrderInDraftState);
+
+		ConnectionBuilder.FlowFromTo(validateIsOrderInDraftState, repoVehicleLoad);
+
 		ConnectionBuilder.FlowFromTo(repoVehicleLoad, validateDoesVehicleHaveRepairContract);
 		ConnectionBuilder.FlowFromTo(validateDoesVehicleHaveRepairContract, branchCanAutoApprove);
 
@@ -70,14 +74,14 @@ export default class FactoryDemoWorkflow {
 		ConnectionBuilder.FlowFromToForWhenPass(branchCanAutoApprove, mutateSetStatusQueueManualApproval);
 		ConnectionBuilder.FlowFromTo(mutateSetStatusQueueManualApproval, repoOrderSaveA);
 		ConnectionBuilder.FlowFromTo(repoOrderSaveA, extSendMailQueuedForApproval);
-		ConnectionBuilder.FlowFromTo(extSendMailQueuedForApproval, finish);
+		ConnectionBuilder.FlowFromTo(extSendMailQueuedForApproval, finishA);
 
 		// manual approval path
 		ConnectionBuilder.FromFromToWhenFail(branchCanAutoApprove, mutateApproveOrder);
 		ConnectionBuilder.FlowFromTo(mutateApproveOrder, mutateSetStatusApproved);
 		ConnectionBuilder.FlowFromTo(mutateSetStatusApproved, repoOrderSaveB);
 		ConnectionBuilder.FlowFromTo(repoOrderSaveB, extSendMailYourOrderIsApproved);
-		ConnectionBuilder.FlowFromTo(extSendMailYourOrderIsApproved, finish);
+		ConnectionBuilder.FlowFromTo(extSendMailYourOrderIsApproved, finishB);
 
 		const nodes = [
 			start,
@@ -94,7 +98,8 @@ export default class FactoryDemoWorkflow {
 			mutateSetStatusQueueManualApproval,
 			extSendMailQueuedForApproval,
 			extSendMailYourOrderIsApproved,
-			finish,
+			finishA,
+			finishB,
 		];
 
 		const workflow = new Workflow(nodes);

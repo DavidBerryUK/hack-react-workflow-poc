@@ -2,6 +2,7 @@ import WorkflowAuditLog from '../../workflowAudit/WorkflowAuditLog';
 import LayoutNode from '../../workflowServices/models/LayoutNode';
 import UIIcon from '../icons/UIIcon';
 import UIIconBoolean from '../icons/UIIconBoolean';
+import UIWorkflowArrows from './UIWorkflowArrows';
 
 interface IProperties {
 	layoutNode: LayoutNode;
@@ -29,18 +30,21 @@ const UIWorkflowNode: React.FC<IProperties> = (props) => {
 	}
 
 	return (
-		<div className="ui-node" style={style}>
-			<div className="region-left">
-				<div>{step}</div>
-				<div>
-					<UIIcon icon={props.layoutNode.action.icon} />
+		<>
+			<div className="ui-node" style={style}>
+				<div className="region-left">
+					<div>{step}</div>
+					<div>
+						<UIIcon icon={props.layoutNode.action.icon} />
+					</div>
+				</div>
+				<div className="region-body">{props.layoutNode.action.name}</div>
+				<div className={className}>
+					<UIIconBoolean value={success} />
 				</div>
 			</div>
-			<div className="region-body">{props.layoutNode.action.name}</div>
-			<div className={className}>
-				<UIIconBoolean value={success} />
-			</div>
-		</div>
+			<UIWorkflowArrows layoutNode={props.layoutNode} />
+		</>
 	);
 };
 

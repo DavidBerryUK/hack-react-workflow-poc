@@ -8,6 +8,15 @@ $banner-width-right: 30px;
 	width: 800px;
 	height: 1150px;
 
+	.ui-arrow {
+		position: absolute;
+		color: #888;
+		display: flex;
+		justify-content: center;
+		align-items: center;
+		font-size: 20px;
+	}
+
 	.ui-node {
 		position: absolute;
 		border-radius: 6px;
