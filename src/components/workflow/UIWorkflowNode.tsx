@@ -16,21 +16,30 @@ const UIWorkflowNode: React.FC<IProperties> = (props) => {
 		height: props.layoutNode.rectangle.height,
 	};
 
-	let step: number | undefined;
+	let className = 'region-right';
+	let step = '';
 	let success: boolean | undefined;
 	var audits = props.auditLog.items.filter((audit) => audit.action.id === props.layoutNode.action.id);
 	if (audits.length > 0) {
-		step = audits[0].step;
+		step = `${audits[0].step}`;
 		success = audits[0].result?.successful;
+		if (success) {
+			className = `${className} success`;
+		}
 	}
 
 	return (
 		<div className="ui-node" style={style}>
-			<UIIcon icon={props.layoutNode.action.icon} />
-			<div key={props.layoutNode.action.id}>
-				{props.layoutNode.action.name}:{step}
+			<div className="region-left">
+				<div>{step}</div>
+				<div>
+					<UIIcon icon={props.layoutNode.action.icon} />
+				</div>
 			</div>
-			<UIIconBoolean value={success} />
+			<div className="region-body">{props.layoutNode.action.name}</div>
+			<div className={className}>
+				<UIIconBoolean value={success} />
+			</div>
 		</div>
 	);
 };

@@ -1,7 +1,5 @@
-@use 'sass:math';
-$percent-20: math.div(20, 100);
-$percent-14: math.div(14, 100);
-$percent-12: math.div(12, 100);
+$banner-width-left: 30px;
+$banner-width-right: 30px;
 
 .ui-workflow {
 	font-family: Arial, Helvetica, sans-serif;
@@ -12,14 +10,64 @@ $percent-12: math.div(12, 100);
 
 	.ui-node {
 		position: absolute;
-		border: solid 2px yellow;
-		background-color: lightgoldenrodyellow;
-		border-radius: 2px;
-		border-radius: 4px;
+		border-radius: 6px;
 		display: flex;
 		justify-content: center;
 		text-align: center;
 		user-select: none;
-		box-shadow: rgba(0, 0, 0, $percent-20) 0px 3px 3px -2px, rgba(0, 0, 0, $percent-14) 0px 3px 4px 0px, rgba(0, 0, 0, $percent-12) 0px 1px 8px 0px;
+		border: solid 2px lightgray;
+		overflow: hidden;
+
+		.region-left {
+			position: absolute;
+			display: flex;
+			flex-direction: column;
+			align-items: center;
+			justify-content: space-around;
+			top: 0;
+			bottom: 0;
+			left: 0;
+			width: $banner-width-left;
+			font-size: 18px;
+			background-color: #fafafa;
+
+			i {
+				font-size: 22px;
+				color: #449;
+			}
+		}
+
+		.region-body {
+			position: absolute;
+			top: 0;
+			bottom: 0;
+			left: $banner-width-left;
+			right: $banner-width-right;
+			padding-top: 4px;
+			padding-left: 4px;
+			padding-right: 4px;
+		}
+
+		.region-right {
+			position: absolute;
+			display: flex;
+			flex-direction: column;
+			align-items: center;
+			justify-content: space-around;
+			top: 0;
+			bottom: 0;
+			right: 0;
+			width: $banner-width-right;
+
+			&.success {
+				background-color: lightgreen;
+				color: darkgreen;
+			}
+
+			&.failed {
+				background-color: pink;
+				color: red;
+			}
+		}
 	}
 }

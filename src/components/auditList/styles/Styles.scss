@@ -1,18 +1,83 @@
-@use 'sass:math';
-$percent-20: math.div(20, 100);
-$percent-14: math.div(14, 100);
-$percent-12: math.div(12, 100);
+$border-color: #ddd;
+$border-radius: 8px;
+$banner-width-left: 80px;
+$banner-width-right: 30px;
 
 .ui-audit-log {
 	font-family: Arial, Helvetica, sans-serif;
 	position: relative;
 
 	.ui-audit-item {
-		box-shadow: rgba(0, 0, 0, $percent-20) 0px 3px 3px -2px, rgba(0, 0, 0, $percent-14) 0px 3px 4px 0px, rgba(0, 0, 0, $percent-12) 0px 1px 8px 0px;
+		position: relative;
+		border-top: 1px solid $border-color;
+		border-left: 1px solid $border-color;
+		border-right: 1px solid $border-color;
 		width: 300px;
 		height: 100px;
-		margin-bottom: 8px;
-		border-radius: 4px;
 		padding: 4px;
+		overflow: hidden;
+
+		&:first-child {
+			border-top-left-radius: $border-radius;
+			border-top-right-radius: $border-radius;
+		}
+
+		&:last-child {
+			border-bottom: 2px solid $border-color;
+			border-bottom-left-radius: $border-radius;
+			border-bottom-right-radius: $border-radius;
+		}
+
+		.region-left {
+			position: absolute;
+			display: flex;
+			flex-direction: column;
+			align-items: center;
+			justify-content: space-around;
+			top: 0;
+			bottom: 0;
+			left: 0;
+			width: $banner-width-left;
+			font-size: 18px;
+			background-color: #fafafa;
+
+			i {
+				font-size: 22px;
+				color: #449;
+			}
+		}
+
+		.region-body {
+			position: absolute;
+			top: 0;
+			bottom: 0;
+			left: $banner-width-left;
+			right: $banner-width-right;
+			padding-top: 4px;
+			padding-left: 4px;
+			padding-right: 4px;
+		}
+
+		.region-right {
+			position: absolute;
+			display: flex;
+			flex-direction: column;
+			align-items: center;
+			justify-content: space-around;
+			top: 0;
+			bottom: 0;
+			right: 0;
+			width: $banner-width-right;
+
+			&.success {
+				background-color: lightgreen;
+				color: darkgreen;
+			}
+
+			&.failed {
+				background-color: pink;
+				color: red;
+			}
+		}
 	}
 }

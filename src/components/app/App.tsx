@@ -1,11 +1,11 @@
+import './styles/Styles.scss';
 import { useState } from 'react';
 import FactoryDemoWorkflow from '../../workflow/factories/FactoryDemoWorkflow';
+import UIAuditList from '../auditList/UIAuditList';
 import UIWorkflow from '../workflow/UIWorkflow';
 import UpdatableContext from '../../workflowContext/models/UpdatableContext';
 import useWorkflowLayoutEngine from '../../workflowServices/useWorkflowLayoutEngine';
 import useWorkflowRunEngine from '../../workflowServices/useWorkflowRunEngine';
-import UIAuditList from '../auditList/UIAuditList';
-import './styles/Styles.scss';
 
 const App: React.FC = () => {
 	const workflowLayoutEngine = useWorkflowLayoutEngine();
@@ -14,7 +14,6 @@ const App: React.FC = () => {
 	const [workflowLayout] = useState(workflowLayoutEngine.layout(workflow));
 	const context = new UpdatableContext();
 
-	// run the workflow
 	useWorkflowRunEngine(workflow, context);
 
 	return (

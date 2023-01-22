@@ -9,9 +9,16 @@ interface IProperties {
 const UIAuditItem: React.FC<IProperties> = (props) => {
 	return (
 		<div className="ui-audit-item">
-			<UIIcon icon={props.audit.action.icon} />
-			{props.audit.step}:{props.audit.action.name}
-			<UIIconBoolean value={props.audit.result?.successful} />
+			<div className="region-left">
+				<div>step {props.audit.step}</div>
+				<div>
+					<UIIcon icon={props.audit.action.icon} />
+				</div>
+			</div>
+			<div className="region-body">{props.audit.action.name}</div>
+			<div className="region-right success">
+				<UIIconBoolean value={props.audit.result?.successful} />
+			</div>
 		</div>
 	);
 };
