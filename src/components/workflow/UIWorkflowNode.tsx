@@ -26,6 +26,8 @@ const UIWorkflowNode: React.FC<IProperties> = (props) => {
 		success = audits[0].result?.successful;
 		if (success) {
 			className = `${className} success`;
+		} else {
+			className = `${className} fail`;
 		}
 	}
 

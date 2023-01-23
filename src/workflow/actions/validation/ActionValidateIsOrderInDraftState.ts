@@ -16,6 +16,6 @@ export default class ActionValidateIsOrderInDraftState extends ActionBase implem
 	}
 
 	execute(context: UpdatableContext): ActionExecutionResult {
-		return ActionExecutionResult.success;
+		return ActionExecutionResult.success();
 	}
 }

@@ -57,11 +57,11 @@ const useWorkflowLayoutEngine = () => {
 						y = y + nodeHeight + nodeSpacingY;
 						break;
 
-					case EnumConnectionType.onFail:
+					case EnumConnectionType.onNo:
 						x = x - (nodeWidth + nodeSpacingX);
 						break;
 
-					case EnumConnectionType.onSuccess:
+					case EnumConnectionType.onYes:
 						x = x + (nodeWidth + nodeSpacingX);
 						break;
 				}

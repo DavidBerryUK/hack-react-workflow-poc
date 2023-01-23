@@ -4,6 +4,7 @@ import UIIconArrowDown from '../icons/UIIconArrowDown';
 import UIIconArrowLeft from '../icons/UIIconArrowLeft';
 import UIIconArrowRight from '../icons/UIIconArrowRight';
 import UIShowIfTrue from '../showIfTrue/UIShowIfTrue';
+import UITextCaption from '../text/UITextCaption';
 
 interface IProperties {
 	layoutNode: LayoutNode;
@@ -33,8 +34,7 @@ const UIWorkflowArrows: React.FC<IProperties> = (props) => {
 
 	const showLeft = props.layoutNode.action.nodeType === EnumNodeType.branching;
 	const showRight = props.layoutNode.action.nodeType === EnumNodeType.branching;
-	const showBottom =
-		props.layoutNode.action.connections.getSuccessOrDefaultConnectionFrom(props.layoutNode.action) !== undefined && showLeft === false;
+	const showBottom = props.layoutNode.action.connections.getYesOrDefaultConnectionFrom(props.layoutNode.action) !== undefined && showLeft === false;
 
 	return (
 		<>
@@ -46,6 +46,7 @@ const UIWorkflowArrows: React.FC<IProperties> = (props) => {
 
 			<UIShowIfTrue value={showRight}>
 				<div className="ui-arrow" style={styleRight}>
+					<UITextCaption>yes</UITextCaption>
 					<UIIconArrowRight />
 				</div>
 			</UIShowIfTrue>
@@ -53,6 +54,7 @@ const UIWorkflowArrows: React.FC<IProperties> = (props) => {
 			<UIShowIfTrue value={showLeft}>
 				<div className="ui-arrow" style={styleLeft}>
 					<UIIconArrowLeft />
+					<UITextCaption>no</UITextCaption>
 				</div>
 			</UIShowIfTrue>
 		</>

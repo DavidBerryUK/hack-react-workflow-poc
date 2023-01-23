@@ -14,12 +14,12 @@ export default class Connections {
 	}
 
 	getSuccessConnectionFrom(node: IAction): Connection | undefined {
-		const nodes = this.items.filter((item) => item.from.id === node.id && item.type === EnumConnectionType.onSuccess);
+		const nodes = this.items.filter((item) => item.from.id === node.id && item.type === EnumConnectionType.onNo);
 		return nodes.length === 0 ? undefined : nodes[0];
 	}
 
-	getFailureConnectionFrom(node: IAction): Connection | undefined {
-		const nodes = this.items.filter((item) => item.from.id === node.id && item.type === EnumConnectionType.onFail);
+	getNoConnectionFrom(node: IAction): Connection | undefined {
+		const nodes = this.items.filter((item) => item.from.id === node.id && item.type === EnumConnectionType.onNo);
 		return nodes.length === 0 ? undefined : nodes[0];
 	}
 
@@ -28,7 +28,7 @@ export default class Connections {
 		return nodes.length === 0 ? undefined : nodes[0];
 	}
 
-	getSuccessOrDefaultConnectionFrom(node: IAction): Connection | undefined {
+	getYesOrDefaultConnectionFrom(node: IAction): Connection | undefined {
 		const successNode = this.getSuccessConnectionFrom(node);
 		if (successNode !== undefined) {
 			return successNode;

@@ -12,7 +12,7 @@ $banner-width-right: 30px;
 		border-left: 1px solid $border-color;
 		border-right: 1px solid $border-color;
 		width: 300px;
-		height: 100px;
+		min-height: 80px;
 		padding: 4px;
 		overflow: hidden;
 		cursor: pointer;
@@ -48,14 +48,10 @@ $banner-width-right: 30px;
 		}
 
 		.region-body {
-			position: absolute;
-			top: 0;
-			bottom: 0;
-			left: $banner-width-left;
-			right: $banner-width-right;
+			padding-left: $banner-width-left;
+			padding-right: $banner-width-right;
 			padding-top: 4px;
-			padding-left: 4px;
-			padding-right: 4px;
+			padding-bottom: 20px;
 		}
 
 		.region-footer {
@@ -83,7 +79,7 @@ $banner-width-right: 30px;
 				color: darkgreen;
 			}
 
-			&.failed {
+			&.fail {
 				background-color: pink;
 				color: red;
 			}

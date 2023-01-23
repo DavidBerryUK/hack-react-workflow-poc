@@ -38,9 +38,9 @@ const useWorkflowRunEngine = (workflow: Workflow, context: UpdatableContext) => 
 	const getNextNode = (node: IAction, lastResult: ActionExecutionResult): IAction | undefined => {
 		var connection: Connection | undefined;
 		if (lastResult.successful) {
-			connection = node.connections.getSuccessOrDefaultConnectionFrom(node);
+			connection = node.connections.getYesOrDefaultConnectionFrom(node);
 		} else {
-			connection = node.connections.getFailureConnectionFrom(node);
+			connection = node.connections.getNoConnectionFrom(node);
 		}
 
 		return connection?.to;

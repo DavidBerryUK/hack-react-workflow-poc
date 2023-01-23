@@ -14,6 +14,7 @@ import ActionValidateDoesVehicleHaveRepairContract from '../actions/validation/A
 import ActionValidateIsGarageUser from '../actions/validation/ActionValidateIsGarageUser';
 import ActionValidateIsOrderInDraftState from '../actions/validation/ActionValidateIsOrderInDraftState';
 import Workflow from '../Workflow';
+import EnumConnectionType from '../connections/EnumConnectionType';
 
 export default class FactoryDemoWorkflow {
 	static createWorkflow(): Workflow {
@@ -59,29 +60,28 @@ export default class FactoryDemoWorkflow {
 		//
 		// Create connections
 		//
-		ConnectionBuilder.FlowFromTo(start, validateIsGarageUser);
-
-		ConnectionBuilder.FlowFromTo(validateIsGarageUser, repoOrderLoad);
-
-		ConnectionBuilder.FlowFromTo(repoOrderLoad, validateIsOrderInDraftState);
-
-		ConnectionBuilder.FlowFromTo(validateIsOrderInDraftState, repoVehicleLoad);
-
-		ConnectionBuilder.FlowFromTo(repoVehicleLoad, validateDoesVehicleHaveRepairContract);
-		ConnectionBuilder.FlowFromTo(validateDoesVehicleHaveRepairContract, branchCanAutoApprove);
+		ConnectionBuilder.addSequenceFlow(start, [
+			validateIsGarageUser,
+			repoOrderLoad,
+			validateIsOrderInDraftState,
+			repoVehicleLoad,
+			validateDoesVehicleHaveRepairContract,
+			branchCanAutoApprove,
+		]);
 
 		// can auto approve path
-		ConnectionBuilder.FlowFromToForWhenPass(branchCanAutoApprove, mutateSetStatusQueueManualApproval);
-		ConnectionBuilder.FlowFromTo(mutateSetStatusQueueManualApproval, repoOrderSaveA);
-		ConnectionBuilder.FlowFromTo(repoOrderSaveA, extSendMailQueuedForApproval);
-		ConnectionBuilder.FlowFromTo(extSendMailQueuedForApproval, finishA);
+		ConnectionBuilder.addSequenceFlowForResultType(
+			branchCanAutoApprove,
+			[mutateSetStatusQueueManualApproval, repoOrderSaveA, extSendMailQueuedForApproval, finishA],
+			EnumConnectionType.onNo
+		);
 
 		// manual approval path
-		ConnectionBuilder.FromFromToWhenFail(branchCanAutoApprove, mutateApproveOrder);
-		ConnectionBuilder.FlowFromTo(mutateApproveOrder, mutateSetStatusApproved);
-		ConnectionBuilder.FlowFromTo(mutateSetStatusApproved, repoOrderSaveB);
-		ConnectionBuilder.FlowFromTo(repoOrderSaveB, extSendMailYourOrderIsApproved);
-		ConnectionBuilder.FlowFromTo(extSendMailYourOrderIsApproved, finishB);
+		ConnectionBuilder.addSequenceFlowForResultType(
+			branchCanAutoApprove,
+			[mutateApproveOrder, repoOrderSaveB, extSendMailYourOrderIsApproved, finishB],
+			EnumConnectionType.onYes
+		);
 
 		const nodes = [
 			start,

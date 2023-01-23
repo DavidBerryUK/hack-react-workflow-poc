@@ -3,6 +3,7 @@ import UIIconBoolean from '../icons/UIIconBoolean';
 import UITextCaption from '../text/UITextCaption';
 import UITextCardTitle from '../text/UITextCardTitle';
 import WorkflowAuditItem from '../../workflowAudit/WorkflowAuditItem';
+import UITextBody from '../text/UITextBody';
 
 interface IProperties {
 	auditItem: WorkflowAuditItem;
@@ -16,6 +17,13 @@ const UIAuditItem: React.FC<IProperties> = (props) => {
 		}
 	};
 
+	let statusClassName = 'region-right ';
+	if (props.auditItem.result?.successful) {
+		statusClassName = `${statusClassName} success`;
+	} else {
+		statusClassName = `${statusClassName} fail`;
+	}
+
 	return (
 		<div className="ui-audit-item" onClick={handleOnClickEventHandler}>
 			<div className="region-left">
@@ -26,8 +34,9 @@ const UIAuditItem: React.FC<IProperties> = (props) => {
 			</div>
 			<div className="region-body">
 				<UITextCardTitle>{props.auditItem.action.name}</UITextCardTitle>
+				<UITextBody>{props.auditItem.result?.message}</UITextBody>
 			</div>
-			<div className="region-right success">
+			<div className={statusClassName}>
 				<UIIconBoolean value={props.auditItem.result?.successful} />
 			</div>
 			<div className="region-footer">

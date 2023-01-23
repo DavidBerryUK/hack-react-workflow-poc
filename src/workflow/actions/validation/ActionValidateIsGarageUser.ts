@@ -1,10 +1,11 @@
 import { nanoid } from 'nanoid';
 import ActionBase from '../base/ActionBase';
 import ActionExecutionResult from '../../model/ActionExecutionResult';
+import EnumIcon from '../../../components/icons/enum/EnumIcon';
 import EnumNodeType from '../../enums/EnumNodeType';
+import EnumUserType from '../../../workflowContext/enums/EnumUserType';
 import IAction from '../interfaces/IAction';
 import UpdatableContext from '../../../workflowContext/models/UpdatableContext';
-import EnumIcon from '../../../components/icons/enum/EnumIcon';
 
 export default class ActionValidateIsGarageUser extends ActionBase implements IAction {
 	nodeType = EnumNodeType.validation;
@@ -16,6 +17,14 @@ export default class ActionValidateIsGarageUser extends ActionBase implements IA
 	}
 
 	execute(context: UpdatableContext): ActionExecutionResult {
-		return ActionExecutionResult.success;
+		if (context.data.user === undefined || context.data.user === null) {
+			return ActionExecutionResult.fail('No user specified');
+		}
+
+		if (context.data.user.userType === EnumUserType.garage) {
+			return ActionExecutionResult.success();
+		}
+
+		return ActionExecutionResult.fail('User type is not garage');
 	}
 }
