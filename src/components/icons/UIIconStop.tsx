@@ -1,5 +1,5 @@
-const UIIconStop: React.FC = (props) => {
-	return <i className="bi bi-stop-circle-fill"></i>;
+const UIIconStop: React.FC = () => {
+	return <i className="bi bi-stop-circle-fill" />;
 };
 
 export default UIIconStop;

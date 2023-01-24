@@ -1,5 +1,5 @@
-const UIIconValidation: React.FC = (props) => {
-	return <i className="bi bi-clipboard2-check"></i>;
+const UIIconValidation: React.FC = () => {
+	return <i className="bi bi-clipboard2-check" />;
 };
 
 export default UIIconValidation;

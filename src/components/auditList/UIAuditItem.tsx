@@ -1,9 +1,9 @@
+import WorkflowAuditItem from '../../workflow/model/WorkflowAuditItem';
 import UIIcon from '../icons/UIIcon';
 import UIIconBoolean from '../icons/UIIconBoolean';
+import UITextBody from '../text/UITextBody';
 import UITextCaption from '../text/UITextCaption';
 import UITextCardTitle from '../text/UITextCardTitle';
-import WorkflowAuditItem from '../../workflowAudit/WorkflowAuditItem';
-import UITextBody from '../text/UITextBody';
 
 interface IProperties {
 	auditItem: WorkflowAuditItem;
@@ -25,6 +25,7 @@ const UIAuditItem: React.FC<IProperties> = (props) => {
 	}
 
 	return (
+		// eslint-disable-next-line jsx-a11y/click-events-have-key-events, jsx-a11y/no-static-element-interactions
 		<div className="ui-audit-item" onClick={handleOnClickEventHandler}>
 			<div className="region-left">
 				<div>step {props.auditItem.step}</div>

@@ -1,4 +1,4 @@
-import WorkflowAuditLog from '../../workflowAudit/WorkflowAuditLog';
+import WorkflowAuditLog from '../../workflow/model/WorkflowAuditLog';
 import LayoutNode from '../../workflowServices/models/LayoutNode';
 import UIIcon from '../icons/UIIcon';
 import UIIconBoolean from '../icons/UIIconBoolean';
@@ -20,7 +20,7 @@ const UIWorkflowNode: React.FC<IProperties> = (props) => {
 	let className = 'region-right';
 	let step = '';
 	let success: boolean | undefined;
-	var audits = props.auditLog.items.filter((audit) => audit.action.id === props.layoutNode.action.id);
+	const audits = props.auditLog.items.filter((audit) => audit.action.id === props.layoutNode.action.id);
 	if (audits.length > 0) {
 		step = `${audits[0].step}`;
 		success = audits[0].result?.successful;

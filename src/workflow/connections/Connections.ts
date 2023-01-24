@@ -1,3 +1,4 @@
+/* eslint-disable import/no-cycle */
 import IAction from '../actions/interfaces/IAction';
 import Connection from './Connection';
 import EnumConnectionType from './EnumConnectionType';
@@ -13,26 +14,29 @@ export default class Connections {
 		this.items.push(connection);
 	}
 
-	getSuccessConnectionFrom(node: IAction): Connection | undefined {
-		const nodes = this.items.filter((item) => item.from.id === node.id && item.type === EnumConnectionType.onNo);
+	getSuccessOrDefaultFrom(node: IAction): Connection | undefined {
+		return this.getTypeOrDefaultFrom(node, EnumConnectionType.onSuccess);
+	}
+
+	getFailOrDefaultFrom(node: IAction): Connection | undefined {
+		return this.getTypeOrDefaultFrom(node, EnumConnectionType.onFail);
+	}
+
+	getYesOrDefaultFrom(node: IAction): Connection | undefined {
+		return this.getTypeOrDefaultFrom(node, EnumConnectionType.onYes);
+	}
+
+	getNoOrDefaultFrom(node: IAction): Connection | undefined {
+		return this.getTypeOrDefaultFrom(node, EnumConnectionType.onNo);
+	}
+
+	getDefaultFrom(node: IAction): Connection | undefined {
+		const nodes = this.items.filter(({ from, type }) => from === node && type === EnumConnectionType.default);
 		return nodes.length === 0 ? undefined : nodes[0];
 	}
 
-	getNoConnectionFrom(node: IAction): Connection | undefined {
-		const nodes = this.items.filter((item) => item.from.id === node.id && item.type === EnumConnectionType.onNo);
-		return nodes.length === 0 ? undefined : nodes[0];
-	}
-
-	getDefaultConnectionFrom(node: IAction): Connection | undefined {
-		const nodes = this.items.filter((item) => item.from.id === node.id && item.type === EnumConnectionType.default);
-		return nodes.length === 0 ? undefined : nodes[0];
-	}
-
-	getYesOrDefaultConnectionFrom(node: IAction): Connection | undefined {
-		const successNode = this.getSuccessConnectionFrom(node);
-		if (successNode !== undefined) {
-			return successNode;
-		}
-		return this.getDefaultConnectionFrom(node);
+	getTypeOrDefaultFrom(node: IAction, connectionType: EnumConnectionType): Connection | undefined {
+		const nextConnection = node.connections.items.find(({ type, from }) => type === connectionType && from === node);
+		return nextConnection ?? this.getDefaultFrom(node);
 	}
 }

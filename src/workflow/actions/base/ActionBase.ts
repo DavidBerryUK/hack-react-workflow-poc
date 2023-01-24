@@ -2,7 +2,9 @@ import Connections from '../../connections/Connections';
 
 export default class ActionBase {
 	id: string;
+
 	name: string;
+
 	connections: Connections;
 
 	constructor(id: string, name: string) {

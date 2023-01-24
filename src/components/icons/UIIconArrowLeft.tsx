@@ -1,5 +1,5 @@
-const UIIconArrowLeft: React.FC = (props) => {
-	return <i className="bi bi-arrow-left"></i>;
+const UIIconArrowLeft: React.FC = () => {
+	return <i className="bi bi-arrow-left" />;
 };
 
 export default UIIconArrowLeft;

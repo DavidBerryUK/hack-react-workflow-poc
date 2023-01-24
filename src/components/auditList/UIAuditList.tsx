@@ -1,8 +1,9 @@
 import './styles/Styles.scss';
-import UIAuditItem from './UIAuditItem';
+
+import WorkflowAuditItem from '../../workflow/model/WorkflowAuditItem';
+import WorkflowAuditLog from '../../workflow/model/WorkflowAuditLog';
 import UITextSubTitle from '../text/UITextSubTitle';
-import WorkflowAuditItem from '../../workflowAudit/WorkflowAuditItem';
-import WorkflowAuditLog from '../../workflowAudit/WorkflowAuditLog';
+import UIAuditItem from './UIAuditItem';
 
 interface IProperties {
 	auditLog: WorkflowAuditLog;

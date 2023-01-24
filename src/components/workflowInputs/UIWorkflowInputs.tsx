@@ -1,11 +1,12 @@
 import React from 'react';
+
 import UITextSubTitle from '../text/UITextSubTitle';
 import UIInputOrder from './UIInputOrder';
 import UIInputUser from './UIInputUser';
 
 interface IProperties {}
 
-const UIWorkflowInputs: React.FC<IProperties> = (props) => {
+const UIWorkflowInputs: React.FC<IProperties> = () => {
 	return (
 		<div>
 			<UITextSubTitle>Inputs</UITextSubTitle>

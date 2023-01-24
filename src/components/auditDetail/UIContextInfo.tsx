@@ -1,9 +1,9 @@
+import WorkflowAuditItem from '../../workflow/model/WorkflowAuditItem';
+import UpdatableContext from '../../workflowContext/models/UpdatableContext';
 import UIShowIfTrue from '../showIfTrue/UIShowIfTrue';
 import UITextBody from '../text/UITextBody';
 import UITextCaption from '../text/UITextCaption';
 import UITextSubTitle from '../text/UITextSubTitle';
-import UpdatableContext from '../../workflowContext/models/UpdatableContext';
-import WorkflowAuditItem from '../../workflowAudit/WorkflowAuditItem';
 
 interface IProperties {}
 
@@ -14,13 +14,13 @@ interface IProperties {
 
 const UIContextInfo: React.FC<IProperties> = (props) => {
 	if (props.auditItem === null) {
-		return <></>;
+		return null;
 	}
 
 	//
 	// find transaction
 	//
-	const transactionId = props.auditItem.transactionId;
+	const { transactionId } = props.auditItem;
 	const snapShot = props.context.getSnapShotForTransaction(transactionId);
 	const showNoSnapShot = snapShot === undefined;
 	const showSnapShot = snapShot !== undefined;

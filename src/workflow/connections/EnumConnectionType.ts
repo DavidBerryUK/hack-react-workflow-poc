@@ -3,7 +3,7 @@ enum EnumConnectionType {
 	onSuccess,
 	onFail,
 	onYes,
-	onNo
+	onNo,
 }
 
 export default EnumConnectionType;

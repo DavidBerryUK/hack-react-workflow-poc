@@ -1,7 +1,6 @@
 import ActionFinish from '../actions/basic/ActionFinish';
 import ActionStart from '../actions/basic/ActionStart';
 import ActionBranchCanAutoApprove from '../actions/branching/ActionBranchCanAutoApprove';
-import ConnectionBuilder from '../connections/ConnectionBuilder';
 import ActionExtSendMailQueuedForApproval from '../actions/external/ActionExtSendMailQueuedForApproval';
 import ActionExtSendMailYourOrderIsApproved from '../actions/external/ActionExtSendMailYourOrderIsApproved';
 import ActionMutateApproveOrder from '../actions/mutations/ActionMutateApproveOrder';
@@ -13,8 +12,9 @@ import ActionRepoVehicleLoad from '../actions/repository/ActionRepoVehicleLoad';
 import ActionValidateDoesVehicleHaveRepairContract from '../actions/validation/ActionValidateDoesVehicleHaveRepairContract';
 import ActionValidateIsGarageUser from '../actions/validation/ActionValidateIsGarageUser';
 import ActionValidateIsOrderInDraftState from '../actions/validation/ActionValidateIsOrderInDraftState';
-import Workflow from '../Workflow';
+import ConnectionBuilder from '../connections/ConnectionBuilder';
 import EnumConnectionType from '../connections/EnumConnectionType';
+import Workflow from '../Workflow';
 
 export default class FactoryDemoWorkflow {
 	static createWorkflow(): Workflow {
@@ -102,7 +102,6 @@ export default class FactoryDemoWorkflow {
 			finishB,
 		];
 
-		const workflow = new Workflow(nodes);
-		return workflow;
+		return new Workflow(nodes);
 	}
 }

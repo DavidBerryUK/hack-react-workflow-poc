@@ -3,6 +3,7 @@ import LayoutNode from './LayoutNode';
 
 export default class LayoutWorkflowModel {
 	nodes: Array<LayoutNode>;
+
 	nodesMap: Map<string, LayoutNode>;
 
 	constructor() {

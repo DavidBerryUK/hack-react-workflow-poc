@@ -1,3 +1,4 @@
+/* eslint-disable import/no-cycle */
 import IAction from '../../workflow/actions/interfaces/IAction';
 import ContextModel from './ContextModel';
 //
@@ -6,7 +7,9 @@ import ContextModel from './ContextModel';
 //
 export default class ContextSnapshotModel {
 	transactionId: string;
+
 	data: ContextModel;
+
 	action: IAction;
 
 	constructor(data: ContextModel, action: IAction, transactionId: string) {

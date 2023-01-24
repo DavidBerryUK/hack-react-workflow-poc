@@ -7,10 +7,10 @@ interface IProperties {
 
 const UIShowIfTrue: React.FC<IProperties> = (props) => {
 	if (props.value === undefined || props.value === null || props.value === false || props.children === undefined || props.children === null) {
-		return <></>;
+		return null;
 	}
 
-	return <>{props.children}</>;
+	return <>props.children</>;
 };
 
 UIShowIfTrue.defaultProps = {

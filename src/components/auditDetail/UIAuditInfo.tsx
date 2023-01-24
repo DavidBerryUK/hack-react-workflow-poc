@@ -1,4 +1,4 @@
-import WorkflowAuditItem from '../../workflowAudit/WorkflowAuditItem';
+import WorkflowAuditItem from '../../workflow/model/WorkflowAuditItem';
 import UpdatableContext from '../../workflowContext/models/UpdatableContext';
 import UIAuditItem from '../auditList/UIAuditItem';
 import UIShowIfTrue from '../showIfTrue/UIShowIfTrue';

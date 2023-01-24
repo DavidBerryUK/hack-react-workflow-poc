@@ -1,5 +1,5 @@
-const UIIconTick: React.FC = (props) => {
-	return <i className="bi bi-check-circle-fill"></i>;
+const UIIconTick: React.FC = () => {
+	return <i className="bi bi-check-circle-fill" />;
 };
 
 export default UIIconTick;

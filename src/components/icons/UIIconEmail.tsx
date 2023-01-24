@@ -1,5 +1,5 @@
-const UIIconEmail: React.FC = (props) => {
-	return <i className="bi bi-envelope-at"></i>;
+const UIIconEmail: React.FC = () => {
+	return <i className="bi bi-envelope-at" />;
 };
 
 export default UIIconEmail;

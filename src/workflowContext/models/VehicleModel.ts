@@ -3,6 +3,7 @@
 //
 export default class VehicleModel {
 	readonly vehicleReg: string;
+
 	readonly hasMaintenanceContract: boolean;
 
 	constructor(vehicleReg: string, hasMaintenanceContract: boolean) {

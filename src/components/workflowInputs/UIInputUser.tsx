@@ -1,6 +1,6 @@
 import React from 'react';
 
-const UIInputUser: React.FC = (props) => {
+const UIInputUser: React.FC = () => {
 	return (
 		<div>
 			<div className="card">

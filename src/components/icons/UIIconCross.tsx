@@ -1,5 +1,5 @@
-const UIIconCross: React.FC = (props) => {
-	return <i className="bi bi-x-circle-fill"></i>;
+const UIIconCross: React.FC = () => {
+	return <i className="bi bi-x-circle-fill" />;
 };
 
 export default UIIconCross;

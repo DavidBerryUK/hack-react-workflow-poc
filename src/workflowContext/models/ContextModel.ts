@@ -8,7 +8,9 @@ import VehicleModel from './VehicleModel';
 
 export default class ContextModel {
 	readonly user: UserModel | undefined;
+
 	readonly vehicle: VehicleModel | undefined;
+
 	readonly order: OrderModel | undefined;
 
 	constructor(user?: UserModel | undefined, vehicle?: VehicleModel | undefined, order?: OrderModel | undefined) {

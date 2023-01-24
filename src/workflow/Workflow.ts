@@ -3,6 +3,7 @@ import EnumNodeType from './enums/EnumNodeType';
 
 export default class Workflow {
 	startNode: IAction;
+
 	nodes: Array<IAction>;
 
 	constructor(nodes: Array<IAction>) {
@@ -19,6 +20,7 @@ export default class Workflow {
 			throw new Error('More that 1 Start nodes exist in workflow');
 		}
 
+		// eslint-disable-next-line prefer-destructuring
 		this.startNode = startNodes[0];
 	}
 }

@@ -1,6 +1,6 @@
 import React from 'react';
 
-const UIInputOrder: React.FC = (props) => {
+const UIInputOrder: React.FC = () => {
 	return (
 		<div>
 			<div className="card">

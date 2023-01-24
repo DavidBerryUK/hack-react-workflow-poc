@@ -1,16 +1,17 @@
 import { ReactNode } from 'react';
+
 import EnumIcon from './enum/EnumIcon';
 import UIIconBranch from './UIIconBranch';
 import UIIconCross from './UIIconCross';
-import UIIconRead from './UIIconRead';
-import UIIconWrite from './UIIconWrite';
 import UIIconEmail from './UIIconEmail';
 import UIIconExclamation from './UIIconExclamation';
 import UIIconMutate from './UIIconMutate';
+import UIIconRead from './UIIconRead';
 import UIIconStart from './UIIconStart';
 import UIIconStop from './UIIconStop';
 import UIIconTick from './UIIconTick';
 import UIIconValidation from './UIIconValidation';
+import UIIconWrite from './UIIconWrite';
 
 interface IProperties {
 	icon: EnumIcon;
@@ -41,6 +42,9 @@ const UIIcon: React.FC<IProperties> = (props) => {
 				return <UIIconStop />;
 			case EnumIcon.mutate:
 				return <UIIconMutate />;
+
+			default:
+				return null;
 		}
 	};
 

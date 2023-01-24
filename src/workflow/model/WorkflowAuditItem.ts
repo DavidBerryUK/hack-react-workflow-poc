@@ -1,15 +1,24 @@
+/* eslint-disable import/no-cycle */
 import { nanoid } from 'nanoid';
-import IAction from '../workflow/actions/interfaces/IAction';
-import ActionExecutionResult from '../workflow/model/ActionExecutionResult';
+
+import IAction from '../actions/interfaces/IAction';
+import ActionExecutionResult from './ActionExecutionResult';
 
 export default class WorkflowAuditItem {
 	id: string;
+
 	step: number;
+
 	action: IAction;
+
 	transactionId: string;
+
 	startTime: number;
+
 	finishTime: number | undefined;
+
 	duration: number | undefined;
+
 	result: ActionExecutionResult | undefined;
 
 	constructor(action: IAction, transactionId: string) {

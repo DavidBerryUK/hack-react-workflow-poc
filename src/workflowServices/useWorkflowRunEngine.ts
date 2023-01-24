@@ -1,10 +1,11 @@
 import { nanoid } from 'nanoid';
-import ActionExecutionResult from '../workflow/model/ActionExecutionResult';
-import Connection from '../workflow/connections/Connection';
+
 import IAction from '../workflow/actions/interfaces/IAction';
-import UpdatableContext from '../workflowContext/models/UpdatableContext';
+import EnumConnectionType from '../workflow/connections/EnumConnectionType';
+import ActionExecutionResult from '../workflow/model/ActionExecutionResult';
+import WorkflowAuditItem from '../workflow/model/WorkflowAuditItem';
 import Workflow from '../workflow/Workflow';
-import WorkflowAuditItem from '../workflowAudit/WorkflowAuditItem';
+import UpdatableContext from '../workflowContext/models/UpdatableContext';
 
 const useWorkflowRunEngine = (workflow: Workflow, context: UpdatableContext) => {
 	const executeWorkflow = () => {
@@ -33,17 +34,22 @@ const useWorkflowRunEngine = (workflow: Workflow, context: UpdatableContext) => 
 	};
 
 	//
-	// get the next node in the sequence
+	// get the next node in the flow sequence
 	//
 	const getNextNode = (node: IAction, lastResult: ActionExecutionResult): IAction | undefined => {
-		var connection: Connection | undefined;
-		if (lastResult.successful) {
-			connection = node.connections.getYesOrDefaultConnectionFrom(node);
-		} else {
-			connection = node.connections.getNoConnectionFrom(node);
+		//
+		// when a node executes, it returns the type of its preferred connection to use to the next node.
+		// This logic retrieves that connection and flow-to node.
+		//
+		// If the node failed to execute successfully, the only connections allowed is the onFail connection,
+		//  if this is not specified then the workflow stops running
+		//
+		const nextConnection = node.connections.getTypeOrDefaultFrom(node, lastResult.exitConnection);
+		if (lastResult.successful === false && nextConnection?.type !== EnumConnectionType.onFail) {
+			return undefined;
 		}
 
-		return connection?.to;
+		return nextConnection?.to;
 	};
 
 	executeWorkflow();

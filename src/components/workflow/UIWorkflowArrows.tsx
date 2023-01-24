@@ -34,7 +34,7 @@ const UIWorkflowArrows: React.FC<IProperties> = (props) => {
 
 	const showLeft = props.layoutNode.action.nodeType === EnumNodeType.branching;
 	const showRight = props.layoutNode.action.nodeType === EnumNodeType.branching;
-	const showBottom = props.layoutNode.action.connections.getYesOrDefaultConnectionFrom(props.layoutNode.action) !== undefined && showLeft === false;
+	const showBottom = props.layoutNode.action.connections.getYesOrDefaultFrom(props.layoutNode.action) !== undefined && showLeft === false;
 
 	return (
 		<>

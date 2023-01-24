@@ -4,7 +4,9 @@ import EnumOrderStatus from '../enums/EnumOrderStatus';
 //
 export default class OrderModel {
 	readonly orderRef: string;
+
 	readonly status: EnumOrderStatus;
+
 	readonly cost: number;
 
 	constructor(orderRef: string, status: EnumOrderStatus, cost: number) {
