@@ -1,19 +1,19 @@
-import OrderModel from './OrderModel';
-import UserModel from './UserModel';
-import VehicleModel from './VehicleModel';
+import OrderEntity from '../../components/repository/entities/OrderEntity';
+import UserEntity from '../../components/repository/entities/UserEntity';
+import VehicleEntity from '../../components/repository/entities/VehicleEntity';
 
 //
 // immutable context - holds all data
 //
 
 export default class ContextModel {
-	readonly user: UserModel | undefined;
+	readonly user: UserEntity | undefined;
 
-	readonly vehicle: VehicleModel | undefined;
+	readonly vehicle: VehicleEntity | undefined;
 
-	readonly order: OrderModel | undefined;
+	readonly order: OrderEntity | undefined;
 
-	constructor(user?: UserModel | undefined, vehicle?: VehicleModel | undefined, order?: OrderModel | undefined) {
+	constructor(user?: UserEntity | undefined, vehicle?: VehicleEntity | undefined, order?: OrderEntity | undefined) {
 		this.user = user;
 		this.vehicle = vehicle;
 		this.order = order;
@@ -23,15 +23,15 @@ export default class ContextModel {
 		return new ContextModel(this.user, this.vehicle, this.order);
 	}
 
-	cloneWithUser(user: UserModel): ContextModel {
+	cloneWithUser(user: UserEntity): ContextModel {
 		return new ContextModel(user, this.vehicle, this.order);
 	}
 
-	cloneWithOrder(order: OrderModel): ContextModel {
+	cloneWithOrder(order: OrderEntity): ContextModel {
 		return new ContextModel(this.user, this.vehicle, order);
 	}
 
-	cloneWithVehicle(vehicle: VehicleModel): ContextModel {
+	cloneWithVehicle(vehicle: VehicleEntity): ContextModel {
 		return new ContextModel(this.user, vehicle, this.order);
 	}
 }

@@ -4,6 +4,7 @@ enum EnumOrderStatus {
 	queuedForManualApproval,
 	approved,
 	rejected,
+	complete,
 }
 
 export default EnumOrderStatus;

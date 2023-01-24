@@ -10,7 +10,8 @@ const UIShowIfTrue: React.FC<IProperties> = (props) => {
 		return null;
 	}
 
-	return <>props.children</>;
+	// eslint-disable-next-line react/jsx-no-useless-fragment
+	return <>{props.children}</>;
 };
 
 UIShowIfTrue.defaultProps = {

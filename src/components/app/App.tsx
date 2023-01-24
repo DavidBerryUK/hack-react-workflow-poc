@@ -6,10 +6,10 @@ import ActionRepoOrderLoad from '../../workflow/actions/repository/ActionRepoOrd
 import FactoryDemoWorkflow from '../../workflow/factories/FactoryDemoWorkflow';
 import EnumUserType from '../../workflowContext/enums/EnumUserType';
 import UpdatableContext from '../../workflowContext/models/UpdatableContext';
-import UserModel from '../../workflowContext/models/UserModel';
 import useWorkflowLayoutEngine from '../../workflowServices/useWorkflowLayoutEngine';
 import useWorkflowRunEngine from '../../workflowServices/useWorkflowRunEngine';
 import UIReporting from '../reporting/UIReporting';
+import UserEntity from '../repository/entities/UserEntity';
 import UIWorkflow from '../workflow/UIWorkflow';
 import UIWorkflowInputs from '../workflowInputs/UIWorkflowInputs';
 
@@ -20,7 +20,7 @@ const App: React.FC = () => {
 	const [workflowLayout] = useState(workflowLayoutEngine.layout(workflow));
 	const context = new UpdatableContext();
 
-	context.updateUser(new ActionRepoOrderLoad(), new UserModel('Gary', EnumUserType.staff), '');
+	context.updateUser(new ActionRepoOrderLoad(), new UserEntity('G', 'Gary', EnumUserType.staff), '');
 
 	useWorkflowRunEngine(workflow, context);
 

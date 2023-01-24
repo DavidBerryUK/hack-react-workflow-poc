@@ -1,11 +1,11 @@
 /* eslint-disable import/no-cycle */
+import OrderEntity from '../../components/repository/entities/OrderEntity';
+import UserEntity from '../../components/repository/entities/UserEntity';
+import VehicleEntity from '../../components/repository/entities/VehicleEntity';
 import IAction from '../../workflow/actions/interfaces/IAction';
 import WorkflowAuditLog from '../../workflow/model/WorkflowAuditLog';
 import ContextModel from './ContextModel';
 import ContextSnapshotModel from './ContextSnapshotModel';
-import OrderModel from './OrderModel';
-import UserModel from './UserModel';
-import VehicleModel from './VehicleModel';
 
 //
 // Context for holding data when executing workflows.
@@ -27,17 +27,17 @@ export default class UpdatableContext {
 		this.auditLog = new WorkflowAuditLog();
 	}
 
-	updateUser(action: IAction, user: UserModel, transactionId: string) {
+	updateUser(action: IAction, user: UserEntity, transactionId: string) {
 		this.data = this.data.cloneWithUser(user);
 		this.takeSnapshot(action, transactionId);
 	}
 
-	updateVehicle(action: IAction, vehicle: VehicleModel, transactionId: string) {
+	updateVehicle(action: IAction, vehicle: VehicleEntity, transactionId: string) {
 		this.data = this.data.cloneWithVehicle(vehicle);
 		this.takeSnapshot(action, transactionId);
 	}
 
-	updateOrder(action: IAction, order: OrderModel, transactionId: string) {
+	updateOrder(action: IAction, order: OrderEntity, transactionId: string) {
 		this.data = this.data.cloneWithOrder(order);
 		this.takeSnapshot(action, transactionId);
 	}
