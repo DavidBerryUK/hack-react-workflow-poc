@@ -1,0 +1,24 @@
+$keyWidth: 50px;
+$border-color: #ddd;
+
+.ui-entity {
+	position: relative;
+
+	.region-key {
+		display: flex;
+		position: absolute;
+		align-items: center;
+		justify-content: center;
+		font-weight: bolder;
+		left: 0;
+		top: 0;
+		color: #888;
+		bottom: 0;
+		width: $keyWidth;
+		background-color: #eee;
+		border-right: solid 1px $border-color;
+	}
+	.region-body {
+		padding-left: $keyWidth;
+	}
+}

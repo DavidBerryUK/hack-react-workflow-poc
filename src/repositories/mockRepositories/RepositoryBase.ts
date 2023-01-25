@@ -1,14 +1,17 @@
+import IEntity from '../interfaces/IEntity';
 import IEntityFactory from '../interfaces/IEntityFactory';
-import IRepositoryEntity from '../interfaces/IRepositoryEntity';
 
 //
 // Simple in-memory repository that can be initialised from a factory
 //
-export default class RepositoryBase<T extends IRepositoryEntity> {
+export default class RepositoryBase<T extends IEntity> {
 	private items: Map<string, T>;
+
+	title: string;
 
 	constructor(factory: IEntityFactory<T>) {
 		const list = factory.getDemoSample();
+		this.title = factory.title;
 		this.items = new Map(list.map((key) => [key.id, key] as [string, T]));
 	}
 

@@ -1,6 +1,7 @@
-import EnumUserType from '../../../workflowContext/enums/EnumUserType';
+import EnumUserType from '../../workflowContext/enums/EnumUserType';
+import IEntity from '../interfaces/IEntity';
 
-export default class UserEntity {
+export default class UserEntity implements IEntity {
 	readonly id: string;
 
 	readonly name: string;

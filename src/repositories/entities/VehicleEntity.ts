@@ -1,4 +1,6 @@
-export default class VehicleEntity {
+import IEntity from '../interfaces/IEntity';
+
+export default class VehicleEntity implements IEntity {
 	readonly id: string;
 
 	readonly vehicleReg: string;

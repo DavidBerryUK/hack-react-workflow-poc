@@ -1,8 +1,11 @@
-import EnumUserType from '../../../workflowContext/enums/EnumUserType';
+import EnumUserType from '../../workflowContext/enums/EnumUserType';
 import UserEntity from '../entities/UserEntity';
 import IEntityFactory from '../interfaces/IEntityFactory';
 
 export default class EntityFactoryUsers implements IEntityFactory<UserEntity> {
+	// eslint-disable-next-line class-methods-use-this
+	title = 'Users';
+
 	// eslint-disable-next-line class-methods-use-this
 	getDemoSample(): Array<UserEntity> {
 		return [

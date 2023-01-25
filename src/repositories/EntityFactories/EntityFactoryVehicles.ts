@@ -3,6 +3,9 @@ import IEntityFactory from '../interfaces/IEntityFactory';
 
 export default class EntityFactoryVehicles implements IEntityFactory<VehicleEntity> {
 	// eslint-disable-next-line class-methods-use-this
+	title = 'Vehicles';
+
+	// eslint-disable-next-line class-methods-use-this
 	getDemoSample(): Array<VehicleEntity> {
 		return [
 			new VehicleEntity('V01', 'ABC123', true),

@@ -1,6 +1,6 @@
-import OrderEntity from '../../components/repository/entities/OrderEntity';
-import UserEntity from '../../components/repository/entities/UserEntity';
-import VehicleEntity from '../../components/repository/entities/VehicleEntity';
+import OrderEntity from '../../repositories/entities/OrderEntity';
+import UserEntity from '../../repositories/entities/UserEntity';
+import VehicleEntity from '../../repositories/entities/VehicleEntity';
 
 //
 // immutable context - holds all data
