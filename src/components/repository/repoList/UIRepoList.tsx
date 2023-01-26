@@ -3,7 +3,7 @@ import { ReactNode } from 'react';
 import IEntity from '../../../repositories/interfaces/IEntity';
 import RepositoryBase from '../../../repositories/mockRepositories/RepositoryBase';
 import UIList from '../../list/UIList';
-import UIListItem from '../../list/UIListItem';
+import UIRepoListItem from './UIRepoListItem';
 
 interface IProperties<T extends IEntity> {
 	repo: RepositoryBase<T>;
@@ -16,10 +16,7 @@ const UIRepoList = <T extends IEntity>(props: IProperties<T>) => {
 			<div>{props.repo.title}</div>
 			<UIList>
 				{props.repo.list().map((item) => (
-					<UIListItem key={item.id} className="ui-entity" selectable>
-						<div className="region-key">{item.id}</div>
-						<div className="region-body">{props.itemRenderer(item)}</div>
-					</UIListItem>
+					<UIRepoListItem key={item.id} item={item} itemRenderer={props.itemRenderer} />
 				))}
 			</UIList>
 		</span>

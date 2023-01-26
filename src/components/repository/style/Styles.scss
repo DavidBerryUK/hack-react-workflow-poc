@@ -21,4 +21,10 @@ $border-color: #ddd;
 	.region-body {
 		padding-left: $keyWidth;
 	}
+
+	.region-edit-commands {
+		position: absolute;
+		top: 8px;
+		right: 8px;
+	}
 }
