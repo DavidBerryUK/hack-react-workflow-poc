@@ -1,10 +1,10 @@
 enum EnumOrderStatus {
-	draft,
-	submitForEstimate,
-	queuedForManualApproval,
-	approved,
-	rejected,
-	complete,
+	Draft,
+	SubmitForEstimate,
+	QueuedForManualApproval,
+	Approved,
+	Rejected,
+	Complete,
 }
 
 export default EnumOrderStatus;

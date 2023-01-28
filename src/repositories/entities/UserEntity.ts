@@ -17,4 +17,8 @@ export default class UserEntity implements IEntity {
 	clone(): UserEntity {
 		return new UserEntity(this.id, this.name, this.userType);
 	}
+
+	cloneWithUserType(userType: EnumUserType): UserEntity {
+		return new UserEntity(this.id, this.name, userType);
+	}
 }

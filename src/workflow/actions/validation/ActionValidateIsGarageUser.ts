@@ -24,7 +24,7 @@ export default class ActionValidateIsGarageUser extends ActionBase implements IA
 			return ActionExecutionResult.fail('No user specified');
 		}
 
-		if (context.data.user.userType === EnumUserType.garage) {
+		if (context.data.user.userType === EnumUserType.Garage) {
 			return ActionExecutionResult.success();
 		}
 

@@ -1,5 +1,6 @@
 import './styles/Styles.scss';
 
+import { RepositoryContextProvider } from '../../contexts/repositoryContext/RepositoryContext';
 // import { useState } from 'react';
 // import UserEntity from '../../repositories/entities/UserEntity';
 // import ActionRepoOrderLoad from '../../workflow/actions/repository/ActionRepoOrderLoad';
@@ -24,12 +25,15 @@ const App: React.FC = () => {
 
 	// useWorkflowRunEngine(workflow, context);
 
+	// <UIWorkflowInputs />
+	// <UIWorkflow auditLog={context.auditLog} workflow={workflowLayout} />
+	// <UIReporting context={context} />
+
 	return (
 		<div className="ui-app">
-			<UIRepositoryViewer />
-			{/* <UIWorkflowInputs />
-			<UIWorkflow auditLog={context.auditLog} workflow={workflowLayout} />
-			<UIReporting context={context} /> */}
+			<RepositoryContextProvider>
+				<UIRepositoryViewer />
+			</RepositoryContextProvider>
 		</div>
 	);
 };

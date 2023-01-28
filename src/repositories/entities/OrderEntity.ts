@@ -21,4 +21,16 @@ export default class OrderEntity implements IEntity {
 	clone(): OrderEntity {
 		return new OrderEntity(this.id, this.status, this.cost, this.vehicleReg);
 	}
+
+	cloneWithVehicle(vehicleReg: EnumVehicleReg): OrderEntity {
+		return new OrderEntity(this.id, this.status, this.cost, vehicleReg);
+	}
+
+	cloneWithCost(cost: number): OrderEntity {
+		return new OrderEntity(this.id, this.status, cost, this.vehicleReg);
+	}
+
+	cloneWithStatus(status: EnumOrderStatus): OrderEntity {
+		return new OrderEntity(this.id, status, this.cost, this.vehicleReg);
+	}
 }
