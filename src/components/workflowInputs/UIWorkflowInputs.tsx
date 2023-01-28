@@ -1,6 +1,6 @@
 import React from 'react';
 
-import UITextSubTitle from '../text/UITextSubTitle';
+import UITextSubTitle from '../ui/text/UITextSubTitle';
 import UIInputOrder from './UIInputOrder';
 import UIInputUser from './UIInputUser';
 

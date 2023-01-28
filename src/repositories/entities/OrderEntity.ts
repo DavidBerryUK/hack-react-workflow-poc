@@ -1,4 +1,5 @@
 import EnumOrderStatus from '../../workflowContext/enums/EnumOrderStatus';
+import EnumVehicleReg from '../../workflowContext/enums/EnumVehicleReg';
 import IEntity from '../interfaces/IEntity';
 
 export default class OrderEntity implements IEntity {
@@ -8,9 +9,9 @@ export default class OrderEntity implements IEntity {
 
 	readonly cost: number;
 
-	readonly vehicleReg: string;
+	readonly vehicleReg: EnumVehicleReg;
 
-	constructor(id: string, status: EnumOrderStatus, cost: number, vehicleReg: string) {
+	constructor(id: string, status: EnumOrderStatus, cost: number, vehicleReg: EnumVehicleReg) {
 		this.id = id;
 		this.status = status;
 		this.cost = cost;

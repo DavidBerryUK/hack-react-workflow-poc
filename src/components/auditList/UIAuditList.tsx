@@ -2,7 +2,7 @@ import './styles/Styles.scss';
 
 import WorkflowAuditItem from '../../workflow/model/WorkflowAuditItem';
 import WorkflowAuditLog from '../../workflow/model/WorkflowAuditLog';
-import UITextSubTitle from '../text/UITextSubTitle';
+import UITextSubTitle from '../ui/text/UITextSubTitle';
 import UIAuditItem from './UIAuditItem';
 
 interface IProperties {

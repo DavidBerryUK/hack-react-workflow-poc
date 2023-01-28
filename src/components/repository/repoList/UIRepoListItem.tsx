@@ -1,7 +1,7 @@
 import { ReactNode } from 'react';
 
 import IEntity from '../../../repositories/interfaces/IEntity';
-import UIListItem from '../../list/UIListItem';
+import UIListItem from '../../ui/list/UIListItem';
 
 interface IProperties<T extends IEntity> {
 	item: T;

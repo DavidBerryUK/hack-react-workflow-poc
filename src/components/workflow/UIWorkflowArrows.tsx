@@ -1,10 +1,10 @@
 import EnumNodeType from '../../workflow/enums/EnumNodeType';
 import LayoutNode from '../../workflowServices/models/LayoutNode';
-import UIIconArrowDown from '../icons/UIIconArrowDown';
-import UIIconArrowLeft from '../icons/UIIconArrowLeft';
-import UIIconArrowRight from '../icons/UIIconArrowRight';
-import UIShowIfTrue from '../showIfTrue/UIShowIfTrue';
-import UITextCaption from '../text/UITextCaption';
+import UIIconArrowDown from '../ui/icons/UIIconArrowDown';
+import UIIconArrowLeft from '../ui/icons/UIIconArrowLeft';
+import UIIconArrowRight from '../ui/icons/UIIconArrowRight';
+import UIShowIfTrue from '../ui/showIfTrue/UIShowIfTrue';
+import UITextCaption from '../ui/text/UITextCaption';
 
 interface IProperties {
 	layoutNode: LayoutNode;

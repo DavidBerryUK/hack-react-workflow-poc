@@ -2,7 +2,7 @@ import { ReactNode } from 'react';
 
 import IEntity from '../../../repositories/interfaces/IEntity';
 import RepositoryBase from '../../../repositories/mockRepositories/RepositoryBase';
-import UIList from '../../list/UIList';
+import UIList from '../../ui/list/UIList';
 import UIRepoListItem from './UIRepoListItem';
 
 interface IProperties<T extends IEntity> {

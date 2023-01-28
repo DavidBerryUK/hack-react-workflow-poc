@@ -1,9 +1,9 @@
 import WorkflowAuditItem from '../../workflow/model/WorkflowAuditItem';
 import UpdatableContext from '../../workflowContext/models/UpdatableContext';
 import UIAuditItem from '../auditList/UIAuditItem';
-import UIShowIfTrue from '../showIfTrue/UIShowIfTrue';
-import UITextBody from '../text/UITextBody';
-import UITextSubTitle from '../text/UITextSubTitle';
+import UIShowIfTrue from '../ui/showIfTrue/UIShowIfTrue';
+import UITextBody from '../ui/text/UITextBody';
+import UITextSubTitle from '../ui/text/UITextSubTitle';
 import UIContextInfo from './UIContextInfo';
 
 interface IProperties {

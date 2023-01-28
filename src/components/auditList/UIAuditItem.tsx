@@ -1,9 +1,9 @@
 import WorkflowAuditItem from '../../workflow/model/WorkflowAuditItem';
-import UIIcon from '../icons/UIIcon';
-import UIIconBoolean from '../icons/UIIconBoolean';
-import UITextBody from '../text/UITextBody';
-import UITextCaption from '../text/UITextCaption';
-import UITextCardTitle from '../text/UITextCardTitle';
+import UIIcon from '../ui/icons/UIIcon';
+import UIIconBoolean from '../ui/icons/UIIconBoolean';
+import UITextBody from '../ui/text/UITextBody';
+import UITextCaption from '../ui/text/UITextCaption';
+import UITextCardTitle from '../ui/text/UITextCardTitle';
 
 interface IProperties {
 	auditItem: WorkflowAuditItem;

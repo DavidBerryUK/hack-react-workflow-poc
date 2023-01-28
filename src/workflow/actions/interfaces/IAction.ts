@@ -1,5 +1,5 @@
 /* eslint-disable import/no-cycle */
-import EnumIcon from '../../../components/icons/enum/EnumIcon';
+import EnumIcon from '../../../components/ui/icons/enum/EnumIcon';
 import UpdatableContext from '../../../workflowContext/models/UpdatableContext';
 import Connections from '../../connections/Connections';
 import EnumNodeType from '../../enums/EnumNodeType';

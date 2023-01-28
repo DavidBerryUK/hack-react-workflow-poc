@@ -1,6 +1,6 @@
 import { nanoid } from 'nanoid';
 
-import EnumIcon from '../../../components/icons/enum/EnumIcon';
+import EnumIcon from '../../../components/ui/icons/enum/EnumIcon';
 import EnumUserType from '../../../workflowContext/enums/EnumUserType';
 import UpdatableContext from '../../../workflowContext/models/UpdatableContext';
 import EnumNodeType from '../../enums/EnumNodeType';

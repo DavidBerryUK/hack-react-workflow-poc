@@ -1,15 +1,15 @@
 import UserEntity from '../../../repositories/entities/UserEntity';
-import EnumUserType from '../../../workflowContext/enums/EnumUserType';
-import UISelectUserType from '../../selectUserType/UISelectUserType';
-import UITextKeyValue from '../../text/UITextKeyValue';
+import UITextCaption from '../../ui/text/UITextCaption';
+import UITextKeyValue from '../../ui/text/UITextKeyValue';
+import UISelectUserType from '../../widgets/selectUserType/UISelectUserType';
 import IEntityListItemProperties from './interfaces/IEntityListItem';
 
 const UIEntityListItemUser = (props: IEntityListItemProperties<UserEntity>) => {
 	return (
 		<div>
 			<UITextKeyValue label="Name" value={props.entity.name} />
-			<UITextKeyValue label="User Type" value={EnumUserType[props.entity.userType]} />
-			<UISelectUserType />
+			<UITextCaption>User Type</UITextCaption>
+			<UISelectUserType userType={props.entity.userType} />
 		</div>
 	);
 };

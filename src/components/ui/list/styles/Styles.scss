@@ -27,9 +27,6 @@ $banner-width-right: 30px;
 
 		&.selectable {
 			cursor: pointer;
-			&:hover {
-				background-color: lighten(steelblue, 40);
-			}
 		}
 	}
 }

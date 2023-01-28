@@ -1,0 +1,9 @@
+.ui-select {
+	border: 2px solid rgba(255, 255, 255, 0);
+	transition: border 0.75s;
+
+	&:hover {
+		transition: border 0.5s ease-in-out;
+		border: #bbb 2px solid;
+	}
+}

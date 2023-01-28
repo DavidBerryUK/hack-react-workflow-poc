@@ -1,7 +1,7 @@
 enum EnumUserType {
-	customer = 1,
-	garage = 2,
-	staff = 3,
+	customer,
+	garage,
+	staff,
 }
 
 export default EnumUserType;
