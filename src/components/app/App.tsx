@@ -2,6 +2,7 @@ import './styles/Styles.scss';
 
 import { useState } from 'react';
 
+import { ApplicationContextProvider } from '../../contexts/applicationContext/ApplicationContext';
 import { RepositoryContextProvider } from '../../contexts/repositoryContext/RepositoryContext';
 import UserEntity from '../../repositories/entities/UserEntity';
 import ActionRepoOrderLoad from '../../workflow/actions/repository/ActionRepoOrderLoad';
@@ -12,6 +13,7 @@ import useWorkflowLayoutEngine from '../../workflowServices/useWorkflowLayoutEng
 import useWorkflowRunEngine from '../../workflowServices/useWorkflowRunEngine';
 import UIReporting from '../reporting/UIReporting';
 import UIDrawerPanels from '../ui/drawerPanels/UIDrawerPanels';
+import UISideBarControls from '../widgets/sidebarControls/UISideBarControls';
 // import UIRepositoryViewer from '../repository/repositoryViewer/UIRepositoryViewer';
 import UIWorkflow from '../workflow/UIWorkflow';
 import UIWorkflowInputs from '../workflowInputs/UIWorkflowInputs';
@@ -29,14 +31,17 @@ const App: React.FC = () => {
 
 	return (
 		<div className="ui-app">
-			<RepositoryContextProvider>
-				<UIDrawerPanels>
-					{/* <UIRepositoryViewer /> */}
-					<UIWorkflowInputs />
-					<UIWorkflow auditLog={context.auditLog} workflow={workflowLayout} />
-					<UIReporting context={context} />
-				</UIDrawerPanels>
-			</RepositoryContextProvider>
+			<ApplicationContextProvider>
+				<RepositoryContextProvider>
+					<UIDrawerPanels>
+						<UISideBarControls />
+						{/* <UIRepositoryViewer /> */}
+						<UIWorkflowInputs />
+						<UIWorkflow auditLog={context.auditLog} workflow={workflowLayout} />
+						<UIReporting context={context} />
+					</UIDrawerPanels>
+				</RepositoryContextProvider>
+			</ApplicationContextProvider>
 		</div>
 	);
 };

@@ -6,24 +6,45 @@ $panel-right-width: 300px;
 		position: fixed;
 		top: 0;
 		bottom: 0;
-		left: 0;
+		left: -$panel-left-width;
 		width: $panel-left-width;
 		border: solid 2px green;
 		background-color: lightblue;
+
+		transition: left 0.5s ease-in-out;
+
+		&.open {
+			left: 0;
+		}
 	}
 
 	.ui-panel-right {
 		position: fixed;
 		top: 0;
 		bottom: 0;
-		right: 0;
+		right: -$panel-right-width;
 		width: $panel-right-width;
 		border: solid 2px green;
 		background-color: lightblue;
+
+		transition: right 0.5s ease-in-out;
+
+		&.open {
+			right: 0;
+		}
 	}
 
 	.ui-body {
-		margin-left: $panel-left-width;
-		margin-right: $panel-right-width;
+		margin-left: 0;
+		margin-right: 0;
+
+		transition: margin-left 0.5s ease-in-out, margin-right 0.5s ease-in-out;
+
+		&.left-open {
+			margin-left: $panel-left-width;
+		}
+		&.right-open {
+			margin-right: $panel-right-width;
+		}
 	}
 }

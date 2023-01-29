@@ -1,0 +1,16 @@
+.ui-toolbar-btn {
+	width: 32px;
+	height: 32px;
+	border: none;
+	font-size: 18px;
+	border-radius: 2px;
+	margin-left: 2px;
+	margin-right: 2px;
+	border-radius: 4px;
+	padding: 0;
+	background-color: #ffffff;
+
+	&:hover {
+		background-color: #eee;
+	}
+}
