@@ -2,7 +2,6 @@ import WorkflowAuditLog from '../../workflow/model/WorkflowAuditLog';
 import LayoutNode from '../../workflowServices/models/LayoutNode';
 import UIIcon from '../ui/icons/UIIcon';
 import UIIconBoolean from '../ui/icons/UIIconBoolean';
-
 import UIWorkflowArrows from './UIWorkflowArrows';
 
 interface IProperties {

@@ -1,0 +1,29 @@
+$panel-left-width: 300px;
+$panel-right-width: 300px;
+
+.ui-drawer-panels {
+	.ui-panel-left {
+		position: fixed;
+		top: 0;
+		bottom: 0;
+		left: 0;
+		width: $panel-left-width;
+		border: solid 2px green;
+		background-color: lightblue;
+	}
+
+	.ui-panel-right {
+		position: fixed;
+		top: 0;
+		bottom: 0;
+		right: 0;
+		width: $panel-right-width;
+		border: solid 2px green;
+		background-color: lightblue;
+	}
+
+	.ui-body {
+		margin-left: $panel-left-width;
+		margin-right: $panel-right-width;
+	}
+}
