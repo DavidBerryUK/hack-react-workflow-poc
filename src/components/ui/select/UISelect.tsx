@@ -3,6 +3,7 @@ import './style/Style.scss';
 import { ChangeEvent } from 'react';
 
 import KeyValueModel from '../../../utilities/KeyValueModel';
+import UIIconEdit from '../icons/UIIconEdit';
 import UIOption from './UIOption';
 
 interface IProperties {
@@ -16,11 +17,14 @@ const UISelect: React.FC<IProperties> = (props) => {
 		props.onChange(event.target.value);
 	};
 	return (
-		<select className="form-select ui-select" value={props.value} onChange={handleOnChangeEventHandler}>
-			{props.options.map((item) => (
-				<UIOption key={`${item.key}`} item={item} />
-			))}
-		</select>
+		<div className="ui-select">
+			<select className="form-select " value={props.value} onChange={handleOnChangeEventHandler}>
+				{props.options.map((item) => (
+					<UIOption key={`${item.key}`} item={item} />
+				))}
+			</select>
+			<UIIconEdit className="edit-icon" />
+		</div>
 	);
 };
 

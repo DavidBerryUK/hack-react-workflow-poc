@@ -4,16 +4,17 @@ import UIIconTick from './UIIconTick';
 
 interface IProperties {
 	value: boolean | undefined;
+	className?: string;
 }
 
 const UIIconBoolean: React.FC<IProperties> = (props) => {
 	if (props.value === true) {
-		return <UIIconTick />;
+		return <UIIconTick className={props.className} />;
 	}
 	if (props.value === false) {
-		return <UIIconCross />;
+		return <UIIconCross className={props.className} />;
 	}
-	return <UIIconQuestion />;
+	return <UIIconQuestion className={props.className} />;
 };
 
 export default UIIconBoolean;

@@ -1,9 +1,30 @@
 .ui-select {
-	border: 2px solid rgba(255, 255, 255, 0);
-	transition: border 0.75s;
+	position: relative;
 
 	&:hover {
-		transition: border 0.5s ease-in-out;
-		border: #bbb 2px solid;
+		&:hover {
+			.edit-icon {
+				color: #666;
+			}
+
+			.form-select {
+				transition: border 0.5s ease-in-out;
+				border: #bbb 2px solid;
+			}
+		}
+	}
+
+	.form-select {
+		border: 2px solid rgba(255, 255, 255, 0);
+		transition: border 0.75s;
+
+		background-image: none;
+	}
+	.edit-icon {
+		position: absolute;
+		right: 6px;
+		top: 8px;
+		color: #ddd;
+		transition: color 0.5s ease-in-out;
 	}
 }

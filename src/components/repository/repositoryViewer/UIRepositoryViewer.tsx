@@ -1,7 +1,7 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
 import '../style/Styles.scss';
 
-import { ReactNode } from 'react';
+import { ReactNode, useState } from 'react';
 
 import CommandUpdateOrder from '../../../contexts/repositoryContext/actions/CommandUpdateOrder';
 import CommandUpdateUser from '../../../contexts/repositoryContext/actions/CommandUpdateUser';
@@ -11,6 +11,8 @@ import OrderEntity from '../../../repositories/entities/OrderEntity';
 import UserEntity from '../../../repositories/entities/UserEntity';
 import VehicleEntity from '../../../repositories/entities/VehicleEntity';
 import IEntity from '../../../repositories/interfaces/IEntity';
+import KeyValueModel from '../../../utilities/KeyValueModel';
+import UISegment from '../../ui/segment/UISegment';
 import UIEntityListItemOrder from '../entityListItems/UIEntityListItemOrder';
 import UIEntityListItemUser from '../entityListItems/UIEntityListItemUser';
 import UIEntityListItemVehicle from '../entityListItems/UIEntityListItemVehicle';
@@ -18,6 +20,12 @@ import UIRepoList from '../repoList/UIRepoList';
 
 const UIRepositoryViewer: React.FC = () => {
 	const { state, dispatch } = useRepositoryContext();
+
+	const [repoNames] = useState([new KeyValueModel('O', 'Orders'), new KeyValueModel('U', 'Users'), new KeyValueModel('V', 'Vehicles')]);
+	const [selectedRepo, setSelectedRepo] = useState(repoNames[0]);
+	const handleOnRepoSelected = (value: KeyValueModel) => {
+		setSelectedRepo(value);
+	};
 
 	const handleOnOrderUpdatedEvent = (order: OrderEntity) => {
 		dispatch(new CommandUpdateOrder(order));
@@ -42,11 +50,14 @@ const UIRepositoryViewer: React.FC = () => {
 	};
 
 	return (
-		<span className="d-flex gap-3">
-			<UIRepoList repo={state.users} itemRenderer={requestUserItem} />
-			<UIRepoList repo={state.orders} itemRenderer={requestOrderItem} />
-			<UIRepoList repo={state.vehicles} itemRenderer={requestVehicleItem} />
-		</span>
+		<div>
+			<UISegment collection={repoNames} value={selectedRepo} onChange={handleOnRepoSelected} />
+			<span className="d-flex gap-3">
+				<UIRepoList repo={state.users} itemRenderer={requestUserItem} />
+				<UIRepoList repo={state.orders} itemRenderer={requestOrderItem} />
+				<UIRepoList repo={state.vehicles} itemRenderer={requestVehicleItem} />
+			</span>
+		</div>
 	);
 };
 

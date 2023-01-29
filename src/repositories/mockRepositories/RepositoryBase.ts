@@ -5,7 +5,7 @@ import IEntityFactory from '../interfaces/IEntityFactory';
 // Simple in-memory repository that can be initialised from a factory
 //
 export default abstract class RepositoryBase<T extends IEntity> {
-	items: Map<string, T>;
+	protected items: Map<string, T>;
 
 	title: string;
 
