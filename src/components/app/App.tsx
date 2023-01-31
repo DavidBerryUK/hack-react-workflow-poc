@@ -4,6 +4,7 @@ import { useState } from 'react';
 
 import { ApplicationContextProvider } from '../../contexts/applicationContext/ApplicationContext';
 import { RepositoryContextProvider } from '../../contexts/repositoryContext/RepositoryContext';
+import { WorkflowContextProvider } from '../../contexts/workflowContext/WorkflowContext';
 import UserEntity from '../../repositories/entities/UserEntity';
 import ActionRepoOrderLoad from '../../workflow/actions/repository/ActionRepoOrderLoad';
 import FactoryDemoWorkflow from '../../workflow/factories/FactoryDemoWorkflow';
@@ -34,22 +35,24 @@ const App: React.FC = () => {
 		<div className="ui-app">
 			<ApplicationContextProvider>
 				<RepositoryContextProvider>
-					<UIToolbar />
-					<UIDrawerPanels
-						leftPanel={<UIRepositoryViewer />}
-						rightPanel={
-							<UIMasterDetail
-								masterTitle="audit"
-								masterPanel={<div>audit list here</div>}
-								detailTitle="Audit Instance"
-								detailPanel={<div>instance info</div>}
-							/>
-						}
-					>
-						<UIWorkflowInputs />
-						<UIWorkflow auditLog={context.auditLog} workflow={workflowLayout} />
-						<UIReporting context={context} />
-					</UIDrawerPanels>
+					<WorkflowContextProvider>
+						<UIToolbar />
+						<UIDrawerPanels
+							leftPanel={<UIRepositoryViewer />}
+							rightPanel={
+								<UIMasterDetail
+									masterTitle="audit"
+									masterPanel={<div>audit list here</div>}
+									detailTitle="Audit Instance"
+									detailPanel={<div>instance info</div>}
+								/>
+							}
+						>
+							<UIWorkflowInputs />
+							<UIWorkflow auditLog={context.auditLog} workflow={workflowLayout} />
+							<UIReporting context={context} />
+						</UIDrawerPanels>
+					</WorkflowContextProvider>
 				</RepositoryContextProvider>
 			</ApplicationContextProvider>
 		</div>
