@@ -1,17 +1,19 @@
 $panel-left-width: 300px;
 $panel-right-width: 300px;
+$header-height: 56px;
+$transition-speed: 0.45s;
 
 .ui-drawer-panels {
 	.ui-panel-left {
 		position: fixed;
-		top: 0;
+		top: $header-height;
 		bottom: 0;
 		left: -$panel-left-width;
 		width: $panel-left-width;
-		border: solid 2px green;
-		background-color: lightblue;
-
-		transition: left 0.5s ease-in-out;
+		border-right: solid 1px #ddd;
+		z-index: 10;
+		background-color: #fff;
+		transition: left $transition-speed ease-in-out;
 
 		&.open {
 			left: 0;
@@ -19,15 +21,15 @@ $panel-right-width: 300px;
 	}
 
 	.ui-panel-right {
+		z-index: 10;
+		background-color: #fff;
 		position: fixed;
-		top: 0;
+		top: $header-height;
 		bottom: 0;
 		right: -$panel-right-width;
 		width: $panel-right-width;
-		border: solid 2px green;
-		background-color: lightblue;
-
-		transition: right 0.5s ease-in-out;
+		border-left: solid 1px #ddd;
+		transition: right $transition-speed ease-in-out;
 
 		&.open {
 			right: 0;
@@ -35,10 +37,11 @@ $panel-right-width: 300px;
 	}
 
 	.ui-body {
+		margin-top: $header-height;
 		margin-left: 0;
 		margin-right: 0;
 
-		transition: margin-left 0.5s ease-in-out, margin-right 0.5s ease-in-out;
+		transition: margin-left $transition-speed ease-in-out, margin-right $transition-speed ease-in-out;
 
 		&.left-open {
 			margin-left: $panel-left-width;

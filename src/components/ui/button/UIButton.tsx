@@ -1,8 +1,12 @@
 import { ReactNode } from 'react';
 
+import EnumIcon from '../icons/enum/EnumIcon';
+import UIIcon from '../icons/UIIcon';
+
 interface IProperties {
 	children?: ReactNode;
 	onClick?: () => void;
+	icon?: EnumIcon;
 	small?: boolean;
 }
 
@@ -22,9 +26,17 @@ const UIButton: React.FC<IProperties> = (props) => {
 		}
 	};
 
+	const icon = () => {
+		if (props.icon === undefined || props.icon === null) {
+			return null;
+		}
+		return <UIIcon icon={props.icon} />;
+	};
+
 	return (
 		<button type="button" className={className()} onClick={handleOnButtonClickedEvent}>
 			{props.children}
+			{icon()}
 		</button>
 	);
 };

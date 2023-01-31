@@ -1,5 +1,5 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
-import '../style/Styles.scss';
+import './styles/Styles.scss';
 
 import { ReactNode, useState } from 'react';
 
@@ -12,7 +12,10 @@ import UserEntity from '../../../repositories/entities/UserEntity';
 import VehicleEntity from '../../../repositories/entities/VehicleEntity';
 import IEntity from '../../../repositories/interfaces/IEntity';
 import KeyValueModel from '../../../utilities/KeyValueModel';
+import UIButton from '../../ui/button/UIButton';
+import EnumIcon from '../../ui/icons/enum/EnumIcon';
 import UISegment from '../../ui/segment/UISegment';
+import UIShowIfTrue from '../../ui/showIfTrue/UIShowIfTrue';
 import UIEntityListItemOrder from '../entityListItems/UIEntityListItemOrder';
 import UIEntityListItemUser from '../entityListItems/UIEntityListItemUser';
 import UIEntityListItemVehicle from '../entityListItems/UIEntityListItemVehicle';
@@ -23,6 +26,7 @@ const UIRepositoryViewer: React.FC = () => {
 
 	const [repoNames] = useState([new KeyValueModel('O', 'Orders'), new KeyValueModel('U', 'Users'), new KeyValueModel('V', 'Vehicles')]);
 	const [selectedRepo, setSelectedRepo] = useState(repoNames[0]);
+
 	const handleOnRepoSelected = (value: KeyValueModel) => {
 		setSelectedRepo(value);
 	};
@@ -49,14 +53,30 @@ const UIRepositoryViewer: React.FC = () => {
 		return <UIEntityListItemVehicle entity={entity as VehicleEntity} onUpdated={handleOnVehicleUpdatedEvent} />;
 	};
 
+	// TODO: Extract into switch type component
+	// this is quite poor:
+	//
+	const showOrders = selectedRepo.key === 'O';
+	const showUsers = selectedRepo.key === 'U';
+	const showVehicles = selectedRepo.key === 'V';
+
 	return (
-		<div>
-			<UISegment collection={repoNames} value={selectedRepo} onChange={handleOnRepoSelected} />
-			<span className="d-flex gap-3">
-				<UIRepoList repo={state.users} itemRenderer={requestUserItem} />
-				<UIRepoList repo={state.orders} itemRenderer={requestOrderItem} />
-				<UIRepoList repo={state.vehicles} itemRenderer={requestVehicleItem} />
-			</span>
+		<div className="ui-toolbar-window">
+			<div className="ui-toolbar-title">
+				<UISegment collection={repoNames} value={selectedRepo} fullWidth onChange={handleOnRepoSelected} />
+				<UIButton icon={EnumIcon.reset} />
+			</div>
+			<div className="ui-toolbar-body">
+				<UIShowIfTrue value={showUsers}>
+					<UIRepoList noTitle repo={state.users} itemRenderer={requestUserItem} />
+				</UIShowIfTrue>
+				<UIShowIfTrue value={showOrders}>
+					<UIRepoList noTitle repo={state.orders} itemRenderer={requestOrderItem} />
+				</UIShowIfTrue>
+				<UIShowIfTrue value={showVehicles}>
+					<UIRepoList noTitle repo={state.vehicles} itemRenderer={requestVehicleItem} />
+				</UIShowIfTrue>
+			</div>
 		</div>
 	);
 };

@@ -7,6 +7,7 @@ import UIIconEmail from './UIIconEmail';
 import UIIconExclamation from './UIIconExclamation';
 import UIIconMutate from './UIIconMutate';
 import UIIconRead from './UIIconRead';
+import UIIconReset from './UIIconReset';
 import UIIconStart from './UIIconStart';
 import UIIconStop from './UIIconStop';
 import UIIconTick from './UIIconTick';
@@ -42,6 +43,8 @@ const UIIcon: React.FC<IProperties> = (props) => {
 				return <UIIconStop />;
 			case EnumIcon.mutate:
 				return <UIIconMutate />;
+			case EnumIcon.reset:
+				return <UIIconReset />;
 
 			default:
 				return null;

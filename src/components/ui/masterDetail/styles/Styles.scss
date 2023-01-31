@@ -1,0 +1,112 @@
+@use "sass:math";
+
+$header-height: 40px;
+$back-button-size: 30px;
+
+.ui-master-detail {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  overflow: hidden;
+
+  .ui-header {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: $header-height;
+    background-color: lightblue;
+
+    .ui-back-button {
+      position: absolute;
+      width: $back-button-size;
+      height: $back-button-size;
+      top: math.div($header-height - $back-button-size, 2);
+      border: solid 1px red;
+      transition: all 0.35s ease-out;
+    }
+  }
+
+  .ui-detail,
+  .ui-master {
+    position: absolute;
+    width: 100%;
+    top: $header-height;
+    bottom: 0;
+
+    .panel-title {
+      position: absolute;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 18px;
+      font-weight: bold;
+      left: 30px;
+      right: 30px;
+      height: $header-height;
+      top: -$header-height;
+      user-select: none;
+      pointer-events: none;
+      opacity: 1;
+      transition: left 0.3s ease-in-out, opacity 0.25s ease-out;
+    }
+  }
+
+  .ui-master {
+    background-color: lighten(lightgreen, 20);
+    transition: left 0.5s ease-in-out;
+  }
+
+  .ui-detail {
+    background-color: lighten(lightgreen, 30);
+    transition: left 0.35s ease-in-out;
+  }
+
+  &.view-master {
+    .ui-master {
+      left: 0;
+      .panel-title {
+        opacity: 1;
+        left: 8px;
+        transition: opacity 0.3s ease-out;
+      }
+    }
+    .ui-detail {
+      left: 100%;
+      .panel-title {
+        opacity: 0;
+        //left: -20px;
+        transition: left 0.2s ease-out, opacity 0.2s ease-out;
+      }
+    }
+    .ui-back-button {
+      left: 40px;
+      opacity: 0;
+      transition: left 0.35s ease-in, opacity 0.3s ease-out;
+    }
+  }
+
+  &.view-detail {
+    .ui-master {
+      left: -20%;
+      .panel-title {
+        opacity: 0;
+        left: -20px;
+      }
+    }
+    .ui-detail {
+      left: 0;
+      .panel-title {
+        opacity: 1;
+        transition: opacity 1s ease-out;
+      }
+    }
+    .ui-back-button {
+      left: 8px;
+      opacity: 1;
+      transition: left 0.3s ease-out, opacity 0.25s ease-in;
+    }
+  }
+}

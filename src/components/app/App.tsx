@@ -12,9 +12,10 @@ import UpdatableContext from '../../workflowContext/models/UpdatableContext';
 import useWorkflowLayoutEngine from '../../workflowServices/useWorkflowLayoutEngine';
 import useWorkflowRunEngine from '../../workflowServices/useWorkflowRunEngine';
 import UIReporting from '../reporting/UIReporting';
+import UIRepositoryViewer from '../repository/repositoryViewer/UIRepositoryViewer';
 import UIDrawerPanels from '../ui/drawerPanels/UIDrawerPanels';
-import UISideBarControls from '../widgets/sidebarControls/UISideBarControls';
-// import UIRepositoryViewer from '../repository/repositoryViewer/UIRepositoryViewer';
+import UIMasterDetail from '../ui/masterDetail/UIMasterDetail';
+import UIToolbar from '../ui/toolbar/UIToolbar';
 import UIWorkflow from '../workflow/UIWorkflow';
 import UIWorkflowInputs from '../workflowInputs/UIWorkflowInputs';
 
@@ -33,9 +34,18 @@ const App: React.FC = () => {
 		<div className="ui-app">
 			<ApplicationContextProvider>
 				<RepositoryContextProvider>
-					<UIDrawerPanels>
-						<UISideBarControls />
-						{/* <UIRepositoryViewer /> */}
+					<UIToolbar />
+					<UIDrawerPanels
+						leftPanel={<UIRepositoryViewer />}
+						rightPanel={
+							<UIMasterDetail
+								masterTitle="audit"
+								masterPanel={<div>audit list here</div>}
+								detailTitle="Audit Instance"
+								detailPanel={<div>instance info</div>}
+							/>
+						}
+					>
 						<UIWorkflowInputs />
 						<UIWorkflow auditLog={context.auditLog} workflow={workflowLayout} />
 						<UIReporting context={context} />

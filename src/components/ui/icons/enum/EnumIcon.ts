@@ -10,6 +10,7 @@ enum EnumIcon {
 	tick,
 	validation,
 	mutate,
+	reset,
 }
 
 export default EnumIcon;

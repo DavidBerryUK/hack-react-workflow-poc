@@ -6,6 +6,8 @@ import { useApplicationContext } from '../../../contexts/applicationContext/Appl
 
 interface IProperties {
 	children: ReactNode;
+	leftPanel?: ReactNode;
+	rightPanel?: ReactNode;
 }
 const UIDrawerPanels: React.FC<IProperties> = (props) => {
 	const { state } = useApplicationContext();
@@ -26,9 +28,9 @@ const UIDrawerPanels: React.FC<IProperties> = (props) => {
 
 	return (
 		<div className="ui-drawer-panels">
-			<div className={classNameLeft} />
+			<div className={classNameLeft}>{props.leftPanel}</div>
 			<div className={classNameBody}>{props.children}</div>
-			<div className={classNameRight} />
+			<div className={classNameRight}>{props.rightPanel}</div>
 		</div>
 	);
 };

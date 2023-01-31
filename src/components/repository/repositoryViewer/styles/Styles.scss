@@ -1,8 +1,40 @@
+$title-height: 38px;
+.ui-toolbar-window {
+	position: absolute;
+
+	top: 1px;
+	bottom: 0;
+	left: 0;
+	right: 0;
+
+	.ui-toolbar-title {
+		position: absolute;
+		display: flex;
+		height: $title-height;
+		top: 0;
+		left: 0;
+		right: 0;
+	}
+
+	.ui-toolbar-body {
+		position: absolute;
+		display: flex;
+
+		top: $title-height;
+		left: 0;
+		right: 0;
+		bottom: 0;
+
+		overflow: auto;
+	}
+}
+
 $keyWidth: 50px;
 $border-color: #ddd;
 
 .ui-entity {
 	position: relative;
+	border: solid 2p red;
 
 	.region-key {
 		display: flex;

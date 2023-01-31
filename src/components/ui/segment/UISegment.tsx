@@ -6,6 +6,8 @@ import UISegmentItem from './UISegmentItem';
 interface IProperties {
 	value: KeyValueModel;
 	collection: Array<KeyValueModel>;
+	className?: string;
+	fullWidth?: boolean;
 	onChange: (item: KeyValueModel) => void;
 }
 
@@ -20,8 +22,13 @@ const UISegment: React.FC<IProperties> = (props) => {
 		return item.key === props.value.key;
 	};
 
+	let className = `btn-group ${props.className ?? ''}`;
+	if (props.fullWidth) {
+		className = `${className} w-100`;
+	}
+
 	return (
-		<div className="btn-group" role="group">
+		<div className={className} role="group">
 			{props.collection.map((item) => (
 				<UISegmentItem
 					item={item}
@@ -34,6 +41,11 @@ const UISegment: React.FC<IProperties> = (props) => {
 			))}
 		</div>
 	);
+};
+
+UISegment.defaultProps = {
+	className: '',
+	fullWidth: false,
 };
 
 export default UISegment;
