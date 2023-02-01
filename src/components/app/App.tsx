@@ -1,10 +1,11 @@
 import './styles/Styles.scss';
 
-import { useState } from 'react';
+import { useEffect } from 'react';
 
-import { ApplicationContextProvider } from '../../contexts/applicationContext/ApplicationContext';
-import { RepositoryContextProvider } from '../../contexts/repositoryContext/RepositoryContext';
-// import { WorkflowContextProvider } from '../../contexts/workflowContext/WorkflowContext';
+import CommandSetUpdatableContext from '../../contexts/workflowContext/actions/CommandSetUpdatableContext';
+import CommandSetWorkflow from '../../contexts/workflowContext/actions/CommandSetWorkflow';
+import CommandSetWorkflowLayout from '../../contexts/workflowContext/actions/CommandSetWorkflowLayout';
+import { useWorkflowContext } from '../../contexts/workflowContext/WorkflowContext';
 import UserEntity from '../../repositories/entities/UserEntity';
 import ActionRepoOrderLoad from '../../workflow/actions/repository/ActionRepoOrderLoad';
 import FactoryDemoWorkflow from '../../workflow/factories/FactoryDemoWorkflow';
@@ -21,40 +22,37 @@ import UIWorkflow from '../workflow/UIWorkflow';
 import UIWorkflowInputs from '../workflowInputs/UIWorkflowInputs';
 
 const App: React.FC = () => {
+	const { state, dispatch } = useWorkflowContext();
+
 	const workflowLayoutEngine = useWorkflowLayoutEngine();
+	const workflowRunEngine = useWorkflowRunEngine();
 
-	const [workflow] = useState(FactoryDemoWorkflow.createWorkflow());
-	const [workflowLayout] = useState(workflowLayoutEngine.layout(workflow));
-	const context = new UpdatableContext();
+	useEffect(() => {
+		const workflow = FactoryDemoWorkflow.createWorkflow();
+		const layout = workflowLayoutEngine.layout(workflow);
+		const updatableContext = new UpdatableContext();
+		dispatch(new CommandSetWorkflow(workflow));
+		dispatch(new CommandSetWorkflowLayout(layout));
+		dispatch(new CommandSetUpdatableContext(updatableContext));
 
-	context.updateUser(new ActionRepoOrderLoad(), new UserEntity('G', 'Gary', EnumUserType.Staff), '');
+		state.updatableContext.updateUser(new ActionRepoOrderLoad(), new UserEntity('G', 'Gary', EnumUserType.Staff), '');
+		workflowRunEngine.executeWorkflow(workflow, updatableContext);
 
-	useWorkflowRunEngine(workflow, context);
+		// eslint-disable-next-line react-hooks/exhaustive-deps
+	}, [dispatch]);
 
 	return (
 		<div className="ui-app">
-			<ApplicationContextProvider>
-				<RepositoryContextProvider>
-					{/* <WorkflowContextProvider> */}
-					<UIToolbar />
-					<UIDrawerPanels
-						leftPanel={<UIRepositoryViewer />}
-						rightPanel={
-							<UIMasterDetail
-								masterTitle="audit"
-								masterPanel={<div>audit list here</div>}
-								detailTitle="Audit Instance"
-								detailPanel={<div>instance info</div>}
-							/>
-						}
-					>
-						<UIWorkflowInputs />
-						<UIWorkflow auditLog={context.auditLog} workflow={workflowLayout} />
-						<UIReporting context={context} />
-					</UIDrawerPanels>
-					{/* </WorkflowContextProvider> */}
-				</RepositoryContextProvider>
-			</ApplicationContextProvider>
+			<UIToolbar />
+			<UIDrawerPanels
+				leftPanel={<UIRepositoryViewer />}
+				rightPanel={
+					<UIMasterDetail masterTitle="audit" masterPanel={<UIReporting />} detailTitle="Audit Instance" detailPanel={<div>instance info</div>} />
+				}
+			>
+				<UIWorkflowInputs />
+				<UIWorkflow />
+			</UIDrawerPanels>
 		</div>
 	);
 };

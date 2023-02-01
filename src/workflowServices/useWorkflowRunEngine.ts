@@ -7,8 +7,12 @@ import WorkflowAuditItem from '../workflow/model/WorkflowAuditItem';
 import Workflow from '../workflow/Workflow';
 import UpdatableContext from '../workflowContext/models/UpdatableContext';
 
-const useWorkflowRunEngine = (workflow: Workflow, context: UpdatableContext) => {
-	const executeWorkflow = () => {
+const useWorkflowRunEngine = () => {
+	const executeWorkflow = (workflow: Workflow | undefined, context: UpdatableContext | undefined) => {
+		if (workflow === undefined || workflow.startNode === undefined || context === undefined) {
+			return;
+		}
+
 		let node: IAction | undefined = workflow.startNode;
 
 		if (node === null) {
@@ -19,17 +23,19 @@ const useWorkflowRunEngine = (workflow: Workflow, context: UpdatableContext) => 
 		// loop though nodes in sequence
 		//
 		do {
-			const transactionId = nanoid();
-			const audit = new WorkflowAuditItem(node, transactionId);
-			context.auditLog.add(audit);
+			if (node !== undefined) {
+				const transactionId = nanoid();
+				const audit = new WorkflowAuditItem(node, transactionId);
+				context.auditLog.add(audit);
 
-			//
-			// execute node
-			//
-			const result = node.execute(context);
-			audit.complete(result);
+				//
+				// execute node
+				//
+				const result = node.execute(context);
+				audit.complete(result);
 
-			node = getNextNode(node, result);
+				node = getNextNode(node, result);
+			}
 		} while (node !== undefined);
 	};
 
@@ -52,7 +58,9 @@ const useWorkflowRunEngine = (workflow: Workflow, context: UpdatableContext) => 
 		return nextConnection?.to;
 	};
 
-	executeWorkflow();
+	return {
+		executeWorkflow,
+	};
 };
 
 export default useWorkflowRunEngine;

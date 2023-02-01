@@ -1,28 +1,25 @@
 import './styles/Styles.scss';
 
+import { useWorkflowContext } from '../../contexts/workflowContext/WorkflowContext';
 import WorkflowAuditItem from '../../workflow/model/WorkflowAuditItem';
-import WorkflowAuditLog from '../../workflow/model/WorkflowAuditLog';
-import UITextSubTitle from '../ui/text/UITextSubTitle';
 import UIAuditItem from './UIAuditItem';
 
 interface IProperties {
-	auditLog: WorkflowAuditLog;
 	onClick: (auditLog: WorkflowAuditItem) => void;
 }
 
 const UIAuditList: React.FC<IProperties> = (props) => {
+	const { state } = useWorkflowContext();
+
 	const handleOnClickEventHandler = (audit: WorkflowAuditItem) => {
 		props.onClick(audit);
 	};
 
 	return (
-		<div>
-			<UITextSubTitle>Audit List</UITextSubTitle>
-			<div className="ui-audit-log">
-				{props.auditLog.items.map((audit) => (
-					<UIAuditItem key={audit.id} auditItem={audit} onClick={handleOnClickEventHandler} />
-				))}
-			</div>
+		<div className="ui-audit-log">
+			{state.updatableContext.auditLog.items.map((audit) => (
+				<UIAuditItem key={audit.id} auditItem={audit} onClick={handleOnClickEventHandler} />
+			))}
 		</div>
 	);
 };

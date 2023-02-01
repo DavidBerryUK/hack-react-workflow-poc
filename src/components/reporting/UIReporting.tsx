@@ -1,27 +1,23 @@
 import './styles/Styles.scss';
 
-import { useState } from 'react';
-
+// import { useState } from 'react';
 import WorkflowAuditItem from '../../workflow/model/WorkflowAuditItem';
-import UpdatableContext from '../../workflowContext/models/UpdatableContext';
-import UIAuditInfo from '../auditDetail/UIAuditInfo';
+// import UIAuditInfo from '../auditDetail/UIAuditInfo';
 import UIAuditList from '../auditList/UIAuditList';
 
-interface IProperties {
-	context: UpdatableContext;
-}
-
-const UIReporting: React.FC<IProperties> = (props) => {
-	const [auditInfo, setAuditInfo] = useState<WorkflowAuditItem | null>(null);
+const UIReporting: React.FC = () => {
+	// const [auditInfo, setAuditInfo] = useState<WorkflowAuditItem | null>(null);
 
 	const handleOnAuditItemSelectedEventHandler = (audit: WorkflowAuditItem) => {
-		setAuditInfo(audit);
+		// eslint-disable-next-line no-console
+		console.log(audit);
+		// setAuditInfo(audit);
 	};
 
 	return (
 		<div className="ui-reporting">
-			<UIAuditList auditLog={props.context.auditLog} onClick={handleOnAuditItemSelectedEventHandler} />
-			<UIAuditInfo context={props.context} auditItem={auditInfo} />
+			<UIAuditList onClick={handleOnAuditItemSelectedEventHandler} />
+			{/* <UIAuditInfo auditItem={auditInfo} /> */}
 		</div>
 	);
 };

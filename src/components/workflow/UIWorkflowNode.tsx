@@ -1,4 +1,4 @@
-import WorkflowAuditLog from '../../workflow/model/WorkflowAuditLog';
+import { useWorkflowContext } from '../../contexts/workflowContext/WorkflowContext';
 import LayoutNode from '../../workflowServices/models/LayoutNode';
 import UIIcon from '../ui/icons/UIIcon';
 import UIIconBoolean from '../ui/icons/UIIconBoolean';
@@ -6,10 +6,11 @@ import UIWorkflowArrows from './UIWorkflowArrows';
 
 interface IProperties {
 	layoutNode: LayoutNode;
-	auditLog: WorkflowAuditLog;
 }
 
 const UIWorkflowNode: React.FC<IProperties> = (props) => {
+	const { state } = useWorkflowContext();
+
 	const style = {
 		top: props.layoutNode.rectangle.top,
 		left: props.layoutNode.rectangle.left,
@@ -20,7 +21,7 @@ const UIWorkflowNode: React.FC<IProperties> = (props) => {
 	let className = 'region-right';
 	let step = '';
 	let success: boolean | undefined;
-	const audits = props.auditLog.items.filter((audit) => audit.action.id === props.layoutNode.action.id);
+	const audits = state.updatableContext.auditLog.items.filter((audit) => audit.action.id === props.layoutNode.action.id);
 	if (audits.length > 0) {
 		step = `${audits[0].step}`;
 		success = audits[0].result?.successful;

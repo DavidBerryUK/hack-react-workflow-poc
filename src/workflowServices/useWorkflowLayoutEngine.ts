@@ -26,6 +26,9 @@ const useWorkflowLayoutEngine = () => {
 		const current = workflow.startNode;
 		const layoutWorkflow = new LayoutWorkflowModel();
 
+		if (current === undefined) {
+			return layoutWorkflow;
+		}
 		parseNodes(layoutWorkflow, current, new Origin(nodeWidth + nodeSpacingX * 1.2, 0));
 
 		return layoutWorkflow;

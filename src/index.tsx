@@ -5,12 +5,21 @@ import React from 'react';
 import ReactDOM from 'react-dom/client';
 
 import App from './components/app/App';
+import { ApplicationContextProvider } from './contexts/applicationContext/ApplicationContext';
+import { RepositoryContextProvider } from './contexts/repositoryContext/RepositoryContext';
+import { WorkflowContextProvider } from './contexts/workflowContext/WorkflowContext';
 import reportWebVitals from './reportWebVitals';
 
 const root = ReactDOM.createRoot(document.getElementById('root') as HTMLElement);
 root.render(
 	<React.StrictMode>
-		<App />
+		<ApplicationContextProvider>
+			<RepositoryContextProvider>
+				<WorkflowContextProvider>
+					<App />
+				</WorkflowContextProvider>
+			</RepositoryContextProvider>
+		</ApplicationContextProvider>
 	</React.StrictMode>
 );
 

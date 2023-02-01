@@ -1,22 +1,18 @@
 import './styles/Styles.scss';
 
-import WorkflowAuditLog from '../../workflow/model/WorkflowAuditLog';
-import LayoutWorkflowModel from '../../workflowServices/models/LayoutWorkflow';
+import { useWorkflowContext } from '../../contexts/workflowContext/WorkflowContext';
 import UITextSubTitle from '../ui/text/UITextSubTitle';
 import UIWorkflowNode from './UIWorkflowNode';
 
-interface IProperties {
-	workflow: LayoutWorkflowModel;
-	auditLog: WorkflowAuditLog;
-}
+const UIWorkflow: React.FC = () => {
+	const { state } = useWorkflowContext();
 
-const UIWorkflow: React.FC<IProperties> = (props) => {
 	return (
 		<div>
 			<UITextSubTitle>Flow Chart</UITextSubTitle>
 			<div className="ui-workflow">
-				{props.workflow.nodes.map((node) => (
-					<UIWorkflowNode key={node.action.id} auditLog={props.auditLog} layoutNode={node} />
+				{state.workflowLayout.nodes.map((node) => (
+					<UIWorkflowNode key={node.action.id} layoutNode={node} />
 				))}
 			</div>
 		</div>

@@ -4,7 +4,7 @@ interface IProperties {
 	children: ReactNode;
 }
 const UITextCaption: React.FC<IProperties> = (props) => {
-	return <span className="ui-caption">{props.children}</span>;
+	return <span className="ui-text-caption">{props.children}</span>;
 };
 
 export default UITextCaption;
